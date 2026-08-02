@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/Tecnonel/">
+    <title>Tecnonel - Tienda de Tecnología</title>
+
+
+    <link rel="icon" type="image/png" href="img/logo.png">
+
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+
+        <div class="barra-superior">
+
+            <img src="img/logo.png" alt="Logo Tecnonel" class="logo">
+
+            <!-- BUSCADOR -->
+            <div class="contenedor-buscador">
+
+                <input type="text" class="buscador" id="buscador" placeholder="🔍 Buscar productos...">
+
+                <div id="sugerencias"></div>
+
+            </div>
+
+            <!-- CARRITO -->
+            <a href="carrito.html">
+                <img src="img/Carrito.png" alt="Carrito" class="carrito">
+            </a>
+
+        </div>
+
+        <!-- MENÚ -->
+        <nav class="menu">
+
+            <a href="categorias.html">Categorías</a>
+
+            <a href="promociones.html">Promociones</a>
+
+            <a href="destacados.html">Artículos Destacados</a>
+
+            <a href="https://wa.me/573127945678?text=Quiero%20comprar" target="_blank">
+                Compra Ahora
+            </a>
+
+            <a href="ayuda.html">
+                Ayuda
+            </a>
+
+        </nav>
+
+    </header>
+
+    <!-- BANNER PRINCIPAL -->
+    <section class="banner">
+        <img src="img/banner.png" alt="Banner Tecnonel">
+    </section>
+
+    <!-- PRODUCTOS DESTACADOS -->
+    <section class="contenedor-productos">
+
+        <h2>Productos Destacados</h2>
+
+        <div class="productos" id="contenedor-destacados">
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="nosotros">
+
+            <h2>Acerca de Nosotros</h2>
+
+            <p>
+                En Tecnonel nos especializamos en productos tecnológicos y gadgets innovadores para el hogar, diseñados para hacer tu vida más cómoda, moderna y eficiente. Ofrecemos artículos de calidad, tendencias tecnológicas y soluciones inteligentes con precios accesibles,
+                compra segura y envíos rápidos a toda Colombia.
+            </p>
+
+        </div>
+
+        <!-- REDES SOCIALES -->
+        <div class="redes">
+
+            <a href="https://www.facebook.com/profile.php?id=61590628119490" target="_blank">
+                <img src="img/facebook.png" alt="Facebook">
+            </a>
+
+            <a href="https://www.instagram.com/oneltecn/" target="_blank">
+                <img src="img/instagram.png" alt="Instagram">
+            </a>
+
+            <a href="https://www.youtube.com/@Tecnonel" target="_blank">
+                <img src="img/youtube.png" alt="YouTube">
+            </a>
+
+            <a href="https://wa.me/573127945678" target="_blank">
+                <img src="img/whatsapp.png" alt="WhatsApp">
+            </a>
+
+            <a href="https://www.tiktok.com/@tecnonel_?is_from_webapp=1&sender_device=pc" target="_blank">
+                <img src="img/tiktok.png" alt="TikTok">
+            </a>
+
+        </div>
+
+    </footer>
+
+    <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+    <a href="https://wa.me/573127945678?text=Hola%20Tecnonel%2C%20quiero%20más%20información" target="_blank" class="boton-flotante">
+
+        <img src="img/compra.png" alt="WhatsApp">
+
+    </a>
+
+    <!-- SCRIPTS -->
+    <script type="module" src="js/index-destacados.js"></script>
+    <script type="module" src="js/buscador.js"></script>
+
+</body>
+
+</html>
