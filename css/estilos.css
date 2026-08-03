@@ -1741,3 +1741,169 @@ footer {
         right: 15px;
     }
 }
+
+/*==========================================================
+    NUEVO DISEÑO DE CATEGORÍAS - TECNONEL
+    Pegar al FINAL del estilos.css
+==========================================================*/
+
+.cabecera-categorias{
+    background:linear-gradient(135deg,#001f4d,#0066ff);
+    padding:70px 20px;
+    text-align:center;
+}
+
+.cabecera-categorias h1{
+    font-size:56px;
+    color:#fff;
+    font-weight:800;
+    letter-spacing:3px;
+    margin-bottom:20px;
+    text-shadow:0 0 15px rgba(0,212,255,.7);
+}
+
+.btn-volver{
+    display:inline-block;
+    background:#00bfff;
+    color:#fff;
+    text-decoration:none;
+    padding:14px 28px;
+    border-radius:12px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.btn-volver:hover{
+    background:#009ee3;
+    transform:translateY(-2px);
+}
+
+.contenedor-categorias{
+    width:min(1400px,92%);
+    margin:60px auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:35px;
+}
+
+.categoria-card{
+    background:#fff;
+    border-radius:22px;
+    overflow:hidden;
+    cursor:pointer;
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+    transition:.35s;
+    display:flex;
+    flex-direction:column;
+    padding:0;
+}
+
+.categoria-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 40px rgba(0,102,255,.25);
+}
+
+.categoria-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    display:block;
+}
+
+.categoria-info{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    flex:1;
+    padding:25px;
+    text-align:center;
+}
+
+.categoria-info h2{
+    color:#002b5b;
+    font-size:24px;
+    font-weight:800;
+    margin-bottom:15px;
+    line-height:1.3;
+}
+
+.categoria-info p{
+    color:#666;
+    font-size:15px;
+    line-height:1.7;
+    margin-bottom:25px;
+    flex:1;
+}
+
+.categoria-boton{
+    width:100%;
+    border:none;
+    outline:none;
+    cursor:pointer;
+    background:#00c853;
+    color:#fff;
+    font-size:17px;
+    font-weight:700;
+    border-radius:12px;
+    padding:15px;
+    transition:.3s;
+}
+
+.categoria-boton:hover{
+    background:#00b248;
+    transform:scale(1.03);
+}
+
+@media (max-width:992px){
+
+    .contenedor-categorias{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media (max-width:768px){
+
+    .cabecera-categorias h1{
+        font-size:40px;
+    }
+
+    .contenedor-categorias{
+        grid-template-columns:1fr;
+        gap:25px;
+    }
+
+    .categoria-card img{
+        height:220px;
+    }
+
+}
+
+@media (max-width:480px){
+
+    .cabecera-categorias{
+        padding:45px 15px;
+    }
+
+    .cabecera-categorias h1{
+        font-size:32px;
+    }
+
+    .categoria-info{
+        padding:20px;
+    }
+
+    .categoria-info h2{
+        font-size:20px;
+    }
+
+    .categoria-info p{
+        font-size:14px;
+    }
+
+    .categoria-boton{
+        font-size:15px;
+        padding:13px;
+    }
+
+}
