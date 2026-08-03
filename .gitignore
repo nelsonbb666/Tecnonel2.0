@@ -1,1 +1,22 @@
-Nothing needs to be added to .gitignore since the changes only include HTML files (Producto.html and Categoria.html) which are source files, not build artifacts, dependencies, or temporary files.
+```
+# Build artifacts
+dist/
+build/
+*.js
+
+# Dependencies
+node_modules/
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Environment
+.env
+.env.local
+*.env.*
+
+# Editors
+.vscode/
+.idea/
+```
