@@ -569,33 +569,21 @@ footer {
 
 
 /* ==========================================================
-   CABECERA DE CATEGORÍAS
+   CABECERA DE CATEGORÍAS - DESHABILITADO (usa nuevo diseño)
    ----------------------------------------------------------
    Encabezado principal de la página categorias.html
 ========================================================== */
 
-.cabecera-categorias {
+/* .cabecera-categorias {
     text-align: center;
     padding: 40px;
 }
-
-
-/* ==========================================================
-   TÍTULO PRINCIPAL DE CATEGORÍAS
-========================================================== */
 
 .cabecera-categorias h1 {
     color: white;
     font-size: 50px;
     text-shadow: 0 0 20px #00d4ff;
 }
-
-
-/* ==========================================================
-   BOTÓN VOLVER
-   ----------------------------------------------------------
-   Regresa al usuario a la página principal.
-========================================================== */
 
 .btn-volver {
     display: inline-block;
@@ -608,14 +596,6 @@ footer {
     font-weight: bold;
 }
 
-
-/* ==========================================================
-   GRID DE CATEGORÍAS
-   ----------------------------------------------------------
-   Organiza todas las categorías en columnas
-   responsivas.
-========================================================== */
-
 .contenedor-categorias {
     width: 90%;
     margin: auto;
@@ -624,11 +604,6 @@ footer {
     gap: 30px;
     padding-bottom: 50px;
 }
-
-
-/* ==========================================================
-   TARJETA DE CATEGORÍA
-========================================================== */
 
 .categoria {
     position: relative;
@@ -639,19 +614,9 @@ footer {
     transition: 0.4s;
 }
 
-
-/* ==========================================================
-   EFECTO HOVER DE CATEGORÍA
-========================================================== */
-
 .categoria:hover {
     transform: translateY(-10px);
 }
-
-
-/* ==========================================================
-   IMAGEN DE CATEGORÍA
-========================================================== */
 
 .categoria img {
     width: 100%;
@@ -659,13 +624,6 @@ footer {
     object-fit: cover;
     display: block;
 }
-
-
-/* ==========================================================
-   OVERLAY DE INFORMACIÓN
-   ----------------------------------------------------------
-   Aparece al pasar el mouse sobre la categoría.
-========================================================== */
 
 .overlay {
     position: absolute;
@@ -683,34 +641,19 @@ footer {
     padding: 20px;
 }
 
-
-/* ==========================================================
-   MOSTRAR OVERLAY AL PASAR EL CURSOR
-========================================================== */
-
 .categoria:hover .overlay {
     opacity: 1;
 }
-
-
-/* ==========================================================
-   TÍTULO DEL OVERLAY
-========================================================== */
 
 .overlay h2 {
     margin-bottom: 15px;
     font-size: 26px;
 }
 
-
-/* ==========================================================
-   DESCRIPCIÓN DEL OVERLAY
-========================================================== */
-
 .overlay p {
     font-size: 16px;
     line-height: 1.6;
-}
+} */
 
 
 /* ==========================================================
