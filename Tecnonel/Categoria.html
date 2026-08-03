@@ -145,7 +145,7 @@ function createProductCard(product) {
     return `
         <div class="u-list-item u-radius u-repeater-item u-shape-round u-white u-list-item-product" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="200">
             <div class="u-container-layout u-similar-container u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xs u-container-layout-product">
-                <a href="../products/${product.name}.html" class="u-product-link">
+                <a href="Producto.html?id=${product.id}" class="u-product-link">
                     <img src="${imageUrl}" alt="${product.title}" class="u-expanded-width u-image u-image-round u-radius u-image-product">
                 </a>
                 <h5 class="u-align-center u-text u-text-product-title">${product.title}</h5>
@@ -154,7 +154,7 @@ function createProductCard(product) {
                     ${discountHtml}
                     <span class="product-price">${formatPrice(product.price)}</span>
                 </div>
-                <a href="../products/${product.name}.html" class="u-active-palette-1-base u-align-center u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-palette-1-light-1 u-btn u-btn-round u-button-style u-hover-palette-1-base u-radius u-text-active-white u-text-body-color u-text-hover-white u-white u-btn-product">Ver Detalles</a>
+                <a href="Producto.html?id=${product.id}" class="u-active-palette-1-base u-align-center u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-palette-1-light-1 u-btn u-btn-round u-button-style u-hover-palette-1-base u-radius u-text-active-white u-text-body-color u-text-hover-white u-white u-btn-product">Ver Detalles</a>
             </div>
         </div>
     `;
