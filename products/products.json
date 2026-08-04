@@ -14,6 +14,7 @@
       "categoria": "cuidado-personal",
       "promocion": true,
       "destacado": true,
+      "popular": true,
       "imagenes": [
         "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863849/afeitar4_kgqnee.jpg",
         "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863848/afeitar3_nn6yuh.jpg",
@@ -33,6 +34,7 @@
       "categoria": "virales",
       "promocion": true,
       "destacado": true,
+      "popular": true,
       "imagenes": [
         "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863838/anuncio_camisa_colombia_xzconw.png",
         "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863839/camiseta_colombia1_rnqfll.jpg",
