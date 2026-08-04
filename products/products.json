@@ -51,6 +51,115 @@
       "video": "https://www.youtube.com/embed/BSB___uDp34",
       "bannerInfo": "img/banner-envios.png",
       "whatsapp": "https://wa.me/573127945678?text=Quiero%20comprar%20la%20Camiseta%20de%20la%20Selección%20Colombia"
+    },
+    {
+      "id": "paralante-ducha-resistentealagua",
+      "titulo": "🚿🔊 Parlante Bluetooth para Ducha Resistente al Agua",
+      "descripcion": "Disfruta de tu música, podcasts o llamadas mientras te duchas con el Parlante Bluetooth Resistente al Agua para Ducha. Su diseño compacto e impermeable permite colocarlo fácilmente en el baño gracias a su práctica ventosa de sujeción.",
+      "precioOriginal": 69000,
+      "precio": 39000,
+      "categoria": "tecnologia",
+      "promocion": true,
+      "destacado": true,
+      "popular": true,
+      "imagenes": [
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863849/parlantersagua_qskfmc.jpg",
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863850/parlantersagua1_r11fy0.jpg",
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863851/parlantersagua10_padqoz.jpg"
+      ],
+      "video": "https://www.youtube.com/embed/7E4bc2fUEX4",
+      "bannerInfo": "img/banner-envios.png",
+      "whatsapp": "https://wa.me/573127945678?text=Quiero%20el%20parlante%20resistente%20al%20agua"
+    },
+    {
+      "id": "parlante-lampara-g-cargador-inalambrico",
+      "titulo": "🔥 Parlante G LED con Cargador Inalámbrico 4 en 1",
+      "descripcion": "¡Ilumina tu espacio, carga tu celular y disfruta tu música favorita! Transforma tu habitación, oficina o escritorio con el nuevo Parlante G LED Inteligente.",
+      "precioOriginal": 110000,
+      "precio": 81000,
+      "categoria": "tecnologia",
+      "promocion": true,
+      "destacado": true,
+      "popular": true,
+      "imagenes": [
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863864/parlantelamparag1_dzuhgg.jpg",
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863863/parlantelamparag_huotrn.jpg"
+      ],
+      "video": "https://www.youtube.com/embed/x-B_ulUA45Y",
+      "bannerInfo": "img/banner-envios.png",
+      "whatsapp": "https://wa.me/573127945678?text=Quiero%20comprar%20parlante%20G%20LED"
+    },
+    {
+      "id": "audifonos-p47-bluetooth",
+      "titulo": "🎧 Audífonos Bluetooth P47 Inalámbricos",
+      "descripcion": "Los Audífonos Bluetooth P47 son la combinación perfecta entre comodidad, calidad de sonido y diseño moderno.",
+      "precioOriginal": 52000,
+      "precio": 47000,
+      "categoria": "tecnologia",
+      "promocion": true,
+      "destacado": true,
+      "popular": true,
+      "imagenes": [
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863828/audifonosp47bluetooth_nquvtg.jpg",
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863828/audifonosp47bluetooth1_xtd5rc.jpg"
+      ],
+      "video": "https://www.youtube.com/embed/iWLuY3XNeUc",
+      "bannerInfo": "img/banner-envios.png",
+      "whatsapp": "https://wa.me/573127945678?text=Quiero%20comprar%20los%20Audífonos%20Bluetooth%20P47"
+    },
+    {
+      "id": "audifonos-inalambricos-p9",
+      "titulo": "🎧 Audífonos Inalámbricos P9 Bluetooth",
+      "descripcion": "Disfruta de un sonido potente, graves profundos y una conexión inalámbrica estable con los Audífonos Inalámbricos P9.",
+      "precioOriginal": 68000,
+      "precio": 48000,
+      "categoria": "tecnologia",
+      "promocion": true,
+      "destacado": true,
+      "popular": true,
+      "imagenes": [
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863825/audifonosinalambricosp9_zkgrmq.jpg",
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863826/audifonosinalambricosp91_aoqcxo.jpg"
+      ],
+      "video": "https://www.youtube.com/embed/vzh4YcfbXk0",
+      "bannerInfo": "img/banner-envios.png",
+      "whatsapp": "https://wa.me/573127945678?text=Quiero%20comprar%20los%20Audífonos%20Inalámbricos%20P9"
+    },
+    {
+      "id": "bombillo-parlante-bluetooth-multicolor",
+      "titulo": "💡🔊 Bombillo LED Bluetooth Multicolor con Parlante Integrado",
+      "descripcion": "¡Ilumina tu espacio y disfruta de tu música favorita al mismo tiempo! Convierte cualquier habitación en un ambiente único.",
+      "precioOriginal": 65000,
+      "precio": 39000,
+      "categoria": "tecnologia",
+      "promocion": true,
+      "destacado": true,
+      "popular": true,
+      "imagenes": [
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863832/bombilloparlantebluetoothmulticolor_t8kfok.jpg",
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785864167/bombilloparlantebluetoothmulticolor1_mcdrfb.gif"
+      ],
+      "video": "https://www.youtube.com/embed/z-kpn00vzjU",
+      "bannerInfo": "img/banner-envios.png",
+      "whatsapp": "https://wa.me/573127945678?text=Quiero%20comprar%20el%20bombillo%20LED%20Bluetooth"
+    },
+    {
+      "id": "powerbank-inalambrica-iphone",
+      "titulo": "🔋 Power Bank Magnético Inalámbrico para iPhone",
+      "descripcion": "¡Carga sin cables donde quieras! Lleva energía extra en tu bolsillo y carga tu iPhone de forma rápida, cómoda y sin cables.",
+      "precioOriginal": 90000,
+      "precio": 69000,
+      "categoria": "tecnologia",
+      "promocion": true,
+      "destacado": true,
+      "popular": true,
+      "imagenes": [
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863896/powerbankinalambricaiphone_tosiwj.jpg",
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863897/powerbankinalambricaiphone1_gi3rbb.jpg"
+      ],
+      "video": "https://www.youtube.com/embed/-aG5_pdZ6cs",
+      "bannerInfo": "img/banner-envios.png",
+      "whatsapp": "https://wa.me/573127945678?text=Quiero%20comprar%20la%20Power%20Bank%20Magnética"
     }
   ]
 }

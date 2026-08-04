@@ -1,1 +1,8 @@
-(products/products.json is a source/config file, and there are no build artifacts, dependencies, or temp files in the changes)
+```json
+{
+  "name": "Laptop",
+  "price": 999.99,
+  "category": "Electronics",
+  "in_stock": true
+}
+```
