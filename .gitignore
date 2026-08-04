@@ -1,8 +1,1 @@
-```json
-{
-  "name": "Laptop",
-  "price": 999.99,
-  "category": "Electronics",
-  "in_stock": true
-}
-```
+Nothing needs to be added to .gitignore since only a single HTML file was modified and there are no build artifacts, dependencies, or temporary files in the changes.

@@ -136,9 +136,18 @@ function formatPrice(price) {
 
 // Función para crear tarjeta de producto
 function createProductCard(product) {
-    const imageUrl = product.imagenes && product.imagenes[0] 
-        ? 'img/' + product.imagenes[0].replace('img/', '')
-        : '../images/default-product.png';
+    // Usar la primera imagen si existe, verificar si es URL completa o ruta relativa
+    let imageUrl = '../images/default-product.png';
+    if (product.imagenes && product.imagenes.length > 0) {
+        const firstImage = product.imagenes[0];
+        // Si la imagen ya es una URL completa (empieza con http), usarla directamente
+        if (firstImage.startsWith('http://') || firstImage.startsWith('https://')) {
+            imageUrl = firstImage;
+        } else {
+            // Si es una ruta relativa, agregar el prefijo img/
+            imageUrl = 'img/' + firstImage.replace('img/', '');
+        }
+    }
     
     const hasDiscount = product.precioOriginal && parseFloat(product.precioOriginal) > parseFloat(product.precio);
     const discountHtml = hasDiscount 
