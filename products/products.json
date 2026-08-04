@@ -13,7 +13,7 @@
       "precio": 45000,
       "categoria": "cuidado-personal",
       "promocion": true,
-      "destacado": true,
+      "popular": true,
       "imagenes": [
         "img/afeitar1.jpg",
         "img/afeitar2.jpg",
@@ -32,7 +32,7 @@
       "precio": 49900,
       "categoria": "virales",
       "promocion": true,
-      "destacado": true,
+      "popular": true,
       "imagenes": [
         "img/anuncio_camisa_colombia.png",
         "img/anuncio_camisa_colombia1.png",
@@ -58,7 +58,7 @@
       "precio": 39000,
       "categoria": "tecnologia",
       "promocion": true,
-      "destacado": true,
+      "popular": true,
       "imagenes": [
         "img/parlantersagua.jpg",
         "img/parlantersagua1.jpg",
@@ -84,7 +84,7 @@
       "precio": 81000,
       "categoria": "tecnologia",
       "promocion": true,
-      "destacado": true,
+      "popular": true,
       "imagenes": [
         "img/parlantelamparag.jpg",
         "img/parlantelamparag1.jpg",
@@ -108,7 +108,7 @@
       "precio": 65000,
       "categoria": "tecnologia",
       "promocion": true,
-      "destacado": true,
+      "popular": true,
       "imagenes": [
         "img/parlantebluetoothportatilrecargablec.jpg",
         "img/parlantebluetoothportatilrecargablec1.jpg",
@@ -128,7 +128,7 @@
       "precio": 39000,
       "categoria": "tecnologia",
       "promocion": true,
-      "destacado": true,
+      "popular": true,
       "imagenes": [
         "img/bombilloparlantebluetoothmulticolor.jpg",
         "img/bombilloparlantebluetoothmulticolor1.gif",
@@ -148,7 +148,7 @@
       "precio": 47000,
       "categoria": "tecnologia",
       "promocion": true,
-      "destacado": true,
+      "popular": true,
       "imagenes": [
         "img/audifonosp47bluetooth.jpg",
         "img/audifonosp47bluetooth1.jpg",
@@ -169,7 +169,7 @@
       "precio": 48000,
       "categoria": "tecnologia",
       "promocion": true,
-      "destacado": true,
+      "popular": true,
       "imagenes": [
         "img/audifonosinalambricosp9.jpg",
         "img/audifonosinalambricosp91.jpg",
@@ -188,7 +188,7 @@
       "precio": 62000,
       "categoria": "tecnologia",
       "promocion": true,
-      "destacado": true,
+      "popular": true,
       "imagenes": [
         "img/audifonosdiademasanimadoscaricaturas.jpg",
         "img/audifonosdiademasanimadoscaricaturas1.jpg",
@@ -211,7 +211,7 @@
       "precio": 43000,
       "categoria": "tecnologia",
       "promocion": true,
-      "destacado": true,
+      "popular": true,
       "imagenes": [
         "img/audifonosinalambricoslevonoht38,lp40.jpg",
         "img/audifonosinalambricoslevonoht38,lp401.jpg",
@@ -231,7 +231,7 @@
       "precio": 69000,
       "categoria": "tecnologia",
       "promocion": true,
-      "destacado": true,
+      "popular": true,
       "imagenes": [
         "img/powerbankinalambricaiphone.jpg",
         "img/powerbankinalambricaiphone1.jpg",
@@ -250,7 +250,7 @@
       "precio": 72000,
       "categoria": "tecnologia",
       "promocion": true,
-      "destacado": true,
+      "popular": true,
       "imagenes": [
         "img/powerbanksolarresistente.jpg",
         "img/powerbanksolarresistente1.jpg",
@@ -269,7 +269,7 @@
       "precio": 69000,
       "categoria": "tecnologia",
       "promocion": true,
-      "destacado": true,
+      "popular": true,
       "imagenes": [
         "img/powerbankmovisunsmartwatchl200.jpg",
         "img/powerbankmovisunsmartwatchl2001.jpg",

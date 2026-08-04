@@ -101,6 +101,11 @@
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
       }
 
+      // Función para formatear precio
+      function formatPrice(price) {
+        return '$' + parseFloat(price).toLocaleString('es-CO');
+      }
+
       // Cargar producto cuando la página esté lista
       document.addEventListener('DOMContentLoaded', function() {
         const productId = getUrlParameter('id');
@@ -120,7 +125,7 @@
             return response.json();
           })
           .then(data => {
-            const product = data.products.find(p => p.id === productId);
+            const product = data.productos.find(p => p.id === productId);
             
             if (!product) {
               document.getElementById('product-title').textContent = 'Producto no encontrado';
@@ -129,61 +134,62 @@
             }
 
             // Actualizar título de la página
-            document.title = product.title + ' - Tecnonel';
+            document.title = product.titulo + ' - Tecnonel';
             
             // Cargar datos del producto
-            document.getElementById('product-title').textContent = product.title;
-            document.getElementById('product-price').textContent = '$' + parseFloat(product.price).toFixed(2);
+            document.getElementById('product-title').textContent = product.titulo;
+            document.getElementById('product-price').textContent = formatPrice(product.precio);
             
             // Precio anterior si existe
             const oldPriceElement = document.getElementById('product-old-price');
-            if (product.oldPrice && product.oldPrice !== product.price) {
-              oldPriceElement.textContent = '$' + parseFloat(product.oldPrice).toFixed(2);
+            if (product.precioOriginal && product.precioOriginal !== product.precio) {
+              oldPriceElement.textContent = formatPrice(product.precioOriginal);
               oldPriceElement.style.display = 'block';
               
               // Calcular descuento
-              const discount = Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100);
+              const discount = Math.round(((product.precioOriginal - product.precio) / product.precioOriginal) * 100);
               const badgeElement = document.getElementById('product-badge');
               badgeElement.textContent = '-' + discount + '%';
               badgeElement.style.display = 'block';
             }
             
             // Descripción
-            document.getElementById('product-description').textContent = product.fullDescription || product.description;
+            document.getElementById('product-description').textContent = product.descripcion;
             
             // Categoría
             const categoryLink = document.getElementById('product-category-link');
-            if (product.categories && product.categories.length > 0) {
-              categoryLink.textContent = 'Categoría ' + product.categories[0];
-              categoryLink.href = 'Categoria.html?id=' + product.categories[0];
+            if (product.categoria) {
+              categoryLink.textContent = product.categoria;
+              categoryLink.href = 'Categoria.html?id=' + product.categoria;
             }
             
             // Galería de imágenes
             const galleryInner = document.getElementById('gallery-inner');
             const galleryThumbnails = document.getElementById('gallery-thumbnails');
             
-            if (product.images && product.images.length > 0) {
+            if (product.imagenes && product.imagenes.length > 0) {
               let galleryHTML = '';
               let thumbnailsHTML = '';
               
-              product.images.forEach((image, index) => {
+              product.imagenes.forEach((image, index) => {
                 const isActive = index === 0 ? 'u-active' : '';
+                const imageUrl = image.startsWith('http') ? image : '../Tecnonel/' + image;
                 
                 galleryHTML += `
                   <div class="u-carousel-item u-gallery-item u-carousel-item-1 ${isActive}">
                     <div class="u-back-slide">
-                      <img class="u-back-image u-expanded u-image-contain" src="${image.url}">
+                      <img class="u-back-image u-expanded u-image-contain" src="${imageUrl}">
                     </div>
                     <div class="u-over-slide u-over-slide-1">
-                      <h3 class="u-gallery-heading">${product.title}</h3>
-                      <p class="u-gallery-text">${product.description}</p>
+                      <h3 class="u-gallery-heading">${product.titulo}</h3>
+                      <p class="u-gallery-text">${product.descripcion.substring(0, 100)}...</p>
                     </div>
                   </div>
                 `;
                 
                 thumbnailsHTML += `
                   <li class="u-carousel-thumbnail u-carousel-thumbnail-1 ${isActive}" data-u-target="#product-gallery" data-u-slide-to="${index}">
-                    <img class="u-carousel-thumbnail-image u-image" src="${image.url}">
+                    <img class="u-carousel-thumbnail-image u-image" src="${imageUrl}">
                   </li>
                 `;
               });
@@ -206,13 +212,27 @@
               `;
             }
             
-            // Configurar botón de comprar
+            // Video de YouTube
+            const videoFrame = document.querySelector('.embed-responsive-item');
+            if (product.video) {
+              videoFrame.src = product.video + '?mute=0&showinfo=0&controls=0&start=0';
+            }
+            
+            // Banner de envíos
+            const bannerImg = document.querySelector('.image-2');
+            if (product.bannerInfo) {
+              bannerImg.src = '../Tecnonel/' + product.bannerInfo;
+            }
+            
+            // Configurar botón de comprar (WhatsApp)
             const addToCartBtn = document.getElementById('add-to-cart-btn');
-            addToCartBtn.addEventListener('click', function(e) {
-              e.preventDefault();
-              alert('Producto "' + product.title + '" agregado al carrito (funcionalidad demo)');
-              // Aquí puedes agregar la lógica real del carrito
-            });
+            if (product.whatsapp) {
+              addToCartBtn.href = product.whatsapp;
+              addToCartBtn.target = '_blank';
+              addToCartBtn.addEventListener('click', function(e) {
+                // No prevenir el default, dejar que abra WhatsApp
+              });
+            }
           })
           .catch(error => {
             console.error('Error:', error);
