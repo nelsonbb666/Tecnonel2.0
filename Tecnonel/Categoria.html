@@ -133,26 +133,26 @@ function formatPrice(price) {
 
 // Función para crear tarjeta de producto
 function createProductCard(product) {
-    const imageUrl = product.images && product.images[0] && product.images[0].url 
-        ? product.images[0].url 
+    const imageUrl = product.imagenes && product.imagenes[0] 
+        ? 'img/' + product.imagenes[0].replace('img/', '')
         : '../images/default-product.png';
     
-    const hasDiscount = product.oldPrice && parseFloat(product.oldPrice) > parseFloat(product.price);
+    const hasDiscount = product.precioOriginal && parseFloat(product.precioOriginal) > parseFloat(product.precio);
     const discountHtml = hasDiscount 
-        ? `<span class="product-discount">${formatPrice(product.oldPrice)}</span>` 
+        ? `<span class="product-discount">$${parseFloat(product.precioOriginal).toLocaleString('es-CO')}</span>` 
         : '';
     
     return `
         <div class="u-list-item u-radius u-repeater-item u-shape-round u-white u-list-item-product" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="200">
             <div class="u-container-layout u-similar-container u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xs u-container-layout-product">
                 <a href="Producto.html?id=${product.id}" class="u-product-link">
-                    <img src="${imageUrl}" alt="${product.title}" class="u-expanded-width u-image u-image-round u-radius u-image-product">
+                    <img src="${imageUrl}" alt="${product.titulo}" class="u-expanded-width u-image u-image-round u-radius u-image-product">
                 </a>
-                <h5 class="u-align-center u-text u-text-product-title">${product.title}</h5>
-                <p class="u-align-center u-text u-text-product-description">${product.description}</p>
+                <h5 class="u-align-center u-text u-text-product-title">${product.titulo}</h5>
+                <p class="u-align-center u-text u-text-product-description">${product.descripcion.substring(0, 100)}...</p>
                 <div class="u-align-center u-price-container">
                     ${discountHtml}
-                    <span class="product-price">${formatPrice(product.price)}</span>
+                    <span class="product-price">$${parseFloat(product.precio).toLocaleString('es-CO')}</span>
                 </div>
                 <a href="Producto.html?id=${product.id}" class="u-active-palette-1-base u-align-center u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-palette-1-light-1 u-btn u-btn-round u-button-style u-hover-palette-1-base u-radius u-text-active-white u-text-body-color u-text-hover-white u-white u-btn-product">Ver Detalles</a>
             </div>
@@ -193,9 +193,9 @@ async function loadProducts() {
         const response = await fetch('../products/products.json');
         const data = await response.json();
         
-        // Filtrar productos por categoría
-        const filteredProducts = data.products.filter(product => 
-            product.categories && product.categories.includes(categoryId)
+        // Filtrar productos por categoría (usando el campo 'categoria')
+        const filteredProducts = data.productos.filter(product => 
+            product.categoria === categoryId
         );
         
         // Mostrar u ocultar según resultados
