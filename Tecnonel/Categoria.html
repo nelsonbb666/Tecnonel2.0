@@ -138,11 +138,14 @@ function formatPrice(price) {
 function createProductCard(product) {
     // Usar la primera imagen si existe, verificar si es URL completa o ruta relativa
     let imageUrl = '../images/default-product.png';
+    let imageCrossOrigin = '';
     if (product.imagenes && product.imagenes.length > 0) {
         const firstImage = product.imagenes[0];
         // Si la imagen ya es una URL completa (empieza con http), usarla directamente
         if (firstImage.startsWith('http://') || firstImage.startsWith('https://')) {
             imageUrl = firstImage;
+            // Agregar crossorigin anonymous para imágenes externas
+            imageCrossOrigin = 'crossorigin="anonymous"';
         } else {
             // Si es una ruta relativa, agregar el prefijo img/
             imageUrl = 'img/' + firstImage.replace('img/', '');
@@ -158,7 +161,7 @@ function createProductCard(product) {
         <div class="u-list-item u-radius u-repeater-item u-shape-round u-white u-list-item-product" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="200">
             <div class="u-container-layout u-similar-container u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xs u-container-layout-product">
                 <a href="Producto.html?id=${product.id}" class="u-product-link">
-                    <img src="${imageUrl}" alt="${product.titulo}" class="u-expanded-width u-image u-image-round u-radius u-image-product">
+                    <img src="${imageUrl}" alt="${product.titulo}" class="u-expanded-width u-image u-image-round u-radius u-image-product" ${imageCrossOrigin} onerror="this.src='../images/default-product.png'; this.onerror=null;">
                 </a>
                 <h5 class="u-align-center u-text u-text-product-title">${product.titulo}</h5>
                 <p class="u-align-center u-text u-text-product-description">${product.descripcion.substring(0, 100)}...</p>
