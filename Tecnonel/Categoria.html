@@ -109,15 +109,17 @@
 <script>
 // Mapeo de categorías (ID -> Nombre y datos)
 const categoriesMap = {
-    '1': { name: '📱 Tecnología y Celulares', description: 'Cargadores, Power Banks, Soportes, Cables USB, Audífonos y Parlantes Bluetooth.' },
-    '2': { name: '🏠 Hogar Inteligente', description: 'Cámaras WiFi, Timbres Inteligentes, Sensores, Luces LED y Enchufes Inteligentes.' },
-    '3': { name: '💡 Iluminación LED', description: 'Tiras RGB, Lámparas Decorativas, Luces con Sensor y Escritorio.' },
-    '4': { name: '🍳 Cocina Inteligente', description: 'Selladoras, Picadoras, Básculas, Dispensadores y Organizadores.' },
-    '5': { name: '🚗 Vehículos', description: 'Soportes, Aspiradoras, Cargadores para Carro y Luces LED.' },
-    '6': { name: '🎮 Gaming y Entretenimiento', description: 'Controles, Teclados, Mouse, Headsets y Accesorios Gamer.' },
-    '7': { name: '💼 Oficina y Productividad', description: 'Organizadores, Lámparas de Escritorio, Accesorios de Computadora.' },
-    '8': { name: '🔧 Herramientas y Hogar', description: 'Herramientas, Organización, Seguridad y Mantenimiento.' },
-    '9': { name: '🎁 Regalos y Novedades', description: 'Productos únicos, innovadores y perfectos para regalar.' }
+    'tecnologia': { name: '📱 Tecnología y Celulares', description: 'Cargadores, Power Banks, Soportes, Cables USB, Audífonos y Parlantes Bluetooth.' },
+    'hogar-inteligente': { name: '🏠 Hogar Inteligente', description: 'Cámaras WiFi, Timbres Inteligentes, Sensores, Luces LED y Enchufes Inteligentes.' },
+    'iluminacion-led': { name: '💡 Iluminación LED', description: 'Tiras RGB, Lámparas Decorativas, Luces con Sensor y Escritorio.' },
+    'cocina-inteligente': { name: '🍳 Cocina Inteligente', description: 'Selladoras, Picadoras, Básculas, Dispensadores y Organizadores.' },
+    'vehiculos': { name: '🚗 Vehículos', description: 'Soportes, Aspiradoras, Cargadores para Carro y Luces LED.' },
+    'gaming': { name: '🎮 Gaming y Entretenimiento', description: 'Controles, Teclados, Mouse, Headsets y Accesorios Gamer.' },
+    'oficina': { name: '💼 Oficina y Productividad', description: 'Organizadores, Lámparas de Escritorio, Accesorios de Computadora.' },
+    'herramientas': { name: '🔧 Herramientas y Hogar', description: 'Herramientas, Organización, Seguridad y Mantenimiento.' },
+    'regalos': { name: '🎁 Regalos y Novedades', description: 'Productos únicos, innovadores y perfectos para regalar.' },
+    'cuidado-personal': { name: '💆 Cuidado Personal', description: 'Máquinas de afeitar, cortadoras y accesorios de cuidado personal.' },
+    'virales': { name: '🔥 Productos Virales', description: 'Los productos más populares y trending del momento.' }
 };
 
 // Función para obtener el parámetro de la URL
