@@ -119,17 +119,20 @@
         // Cargar products.json
         fetch('../products/products.json')
           .then(response => {
+            console.log('Estado de la respuesta:', response.status);
             if (!response.ok) {
-              throw new Error('Error al cargar productos.json');
+              throw new Error('Error HTTP: ' + response.status);
             }
             return response.json();
           })
           .then(data => {
+            console.log('Datos cargados:', data);
             const product = data.productos.find(p => p.id === productId);
+            console.log('Producto encontrado:', product);
             
             if (!product) {
               document.getElementById('product-title').textContent = 'Producto no encontrado';
-              document.getElementById('product-description').textContent = 'El producto seleccionado no existe en nuestra base de datos.';
+              document.getElementById('product-description').textContent = 'El producto seleccionado no existe. ID buscado: ' + productId;
               return;
             }
 
