@@ -110,29 +110,52 @@
       document.addEventListener('DOMContentLoaded', function() {
         const productId = getUrlParameter('id');
         
+        console.log('ID del producto desde URL:', productId);
+        console.log('URL completa:', window.location.href);
+        
         if (!productId) {
           document.getElementById('product-title').textContent = 'Producto no especificado';
           document.getElementById('product-description').textContent = 'Por favor, seleccione un producto válido.';
           return;
         }
 
-        // Cargar products.json
-        fetch('../products/products.json')
+        // Intentar cargar products.json con diferentes rutas posibles
+        let jsonPath = '../products/products.json';
+        
+        // Si estamos en Tecnonel/, ajustar la ruta
+        if (window.location.pathname.includes('/Tecnonel/')) {
+          jsonPath = '../products/products.json';
+        }
+        
+        console.log('Ruta JSON intentada:', jsonPath);
+        
+        fetch(jsonPath)
           .then(response => {
             console.log('Estado de la respuesta:', response.status);
+            console.log('Headers:', response.headers);
             if (!response.ok) {
               throw new Error('Error HTTP: ' + response.status);
             }
             return response.json();
           })
           .then(data => {
-            console.log('Datos cargados:', data);
-            const product = data.productos.find(p => p.id === productId);
+            console.log('Datos cargados exitosamente:', data);
+            console.log('Número de productos:', data.productos ? data.productos.length : 0);
+            
+            if (!data.productos) {
+              throw new Error('El JSON no contiene la propiedad "productos"');
+            }
+            
+            const product = data.productos.find(p => {
+              console.log('Comparando ID:', p.id, 'con', productId, '=', (p.id === productId));
+              return p.id === productId;
+            });
             console.log('Producto encontrado:', product);
             
             if (!product) {
+              const idsDisponibles = data.productos.map(p => p.id).join(', ');
               document.getElementById('product-title').textContent = 'Producto no encontrado';
-              document.getElementById('product-description').textContent = 'El producto seleccionado no existe. ID buscado: ' + productId;
+              document.getElementById('product-description').textContent = 'El producto "' + productId + '" no existe. IDs disponibles: ' + idsDisponibles;
               return;
             }
 
