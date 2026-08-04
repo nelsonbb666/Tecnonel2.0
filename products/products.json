@@ -144,22 +144,112 @@
       "whatsapp": "https://wa.me/573127945678?text=Quiero%20comprar%20el%20bombillo%20LED%20Bluetooth"
     },
     {
-      "id": "powerbank-inalambrica-iphone",
-      "titulo": "🔋 Power Bank Magnético Inalámbrico para iPhone",
-      "descripcion": "¡Carga sin cables donde quieras! Lleva energía extra en tu bolsillo y carga tu iPhone de forma rápida, cómoda y sin cables.",
-      "precioOriginal": 90000,
-      "precio": 69000,
-      "categoria": "tecnologia",
+      "id": "guantes-de-piel",
+      "titulo": "Guantes de piel",
+      "descripcion": "Elegantes guantes de piel genuina, perfectos para proteger tus manos del frío con estilo. Disponibles en varios tamaños y colores.",
+      "precioOriginal": 100000,
+      "precio": 75000,
+      "categoria": "accesorios",
+      "promocion": true,
+      "destacado": false,
+      "popular": true,
+      "imagenes": [
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863832/guantes-piel-1.jpg",
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863833/guantes-piel-2.jpg"
+      ],
+      "video": "",
+      "bannerInfo": "img/banner-envios.png",
+      "whatsapp": "https://wa.me/573127945678?text=Quiero%20comprar%20los%20Guantes%20de%20piel"
+    },
+    {
+      "id": "sandalias",
+      "titulo": "Sandalias cómodas",
+      "descripcion": "Sandalias ligeras y cómodas para el verano. Ideales para caminar largas distancias sin cansancio.",
+      "precioOriginal": 80000,
+      "precio": 55000,
+      "categoria": "zapatos",
+      "promocion": true,
+      "destacado": false,
+      "popular": false,
+      "imagenes": [
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863834/sandalias-1.jpg",
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863835/sandalias-2.jpg"
+      ],
+      "video": "",
+      "bannerInfo": "img/banner-envios.png",
+      "whatsapp": "https://wa.me/573127945678?text=Quiero%20comprar%20las%20Sandalias"
+    },
+    {
+      "id": "falda-de-nina",
+      "titulo": "Falda de Niña",
+      "descripcion": "Hermosa falda para niña, confeccionada con materiales suaves y cómodos. Disponible en varios colores y tallas.",
+      "precioOriginal": 70000,
+      "precio": 45000,
+      "categoria": "ropas",
+      "promocion": true,
+      "destacado": false,
+      "popular": true,
+      "imagenes": [
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863836/falda-nina-1.jpg",
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863837/falda-nina-2.jpg"
+      ],
+      "video": "",
+      "bannerInfo": "img/banner-envios.png",
+      "whatsapp": "https://wa.me/573127945678?text=Quiero%20comprar%20la%20Falda%20de%20Niña"
+    },
+    {
+      "id": "playeras-de-hombre",
+      "titulo": "Playeras de Hombre",
+      "descripcion": "Playeras casuales para hombre, fabricadas en algodón 100%. Cómodas y duraderas, perfectas para el día a día.",
+      "precioOriginal": 60000,
+      "precio": 40000,
+      "categoria": "ropas",
+      "promocion": false,
+      "destacado": true,
+      "popular": true,
+      "imagenes": [
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863838/playera-hombre-1.jpg",
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863839/playera-hombre-2.jpg"
+      ],
+      "video": "",
+      "bannerInfo": "img/banner-envios.png",
+      "whatsapp": "https://wa.me/573127945678?text=Quiero%20comprar%20la%20Playera%20de%20Hombre"
+    },
+    {
+      "id": "sombrero-de-verano",
+      "titulo": "Sombrero de Verano",
+      "descripcion": "Sombrero ligero para proteger del sol durante el verano. Estilo casual y moderno, ideal para playa y piscina.",
+      "precioOriginal": 50000,
+      "precio": 35000,
+      "categoria": "accesorios",
+      "promocion": true,
+      "destacado": false,
+      "popular": false,
+      "imagenes": [
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863840/sombrero-verano-1.jpg",
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863841/sombrero-verano-2.jpg"
+      ],
+      "video": "",
+      "bannerInfo": "img/banner-envios.png",
+      "whatsapp": "https://wa.me/573127945678?text=Quiero%20comprar%20el%20Sombrero%20de%20Verano"
+    },
+    {
+      "id": "zapatos-de-mujer",
+      "titulo": "Zapatos de Mujer",
+      "descripcion": "Elegantes zapatos para mujer, perfectos para ocasiones especiales. Cómodos y con diseño moderno.",
+      "precioOriginal": 150000,
+      "precio": 120000,
+      "categoria": "zapatos",
       "promocion": true,
       "destacado": true,
       "popular": true,
       "imagenes": [
-        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863896/powerbankinalambricaiphone_tosiwj.jpg",
-        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863897/powerbankinalambricaiphone1_gi3rbb.jpg"
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863842/zapatos-mujer-1.jpg",
+        "https://res.cloudinary.com/h8ktioqn/image/upload/v1785863843/zapatos-mujer-2.jpg"
       ],
-      "video": "https://www.youtube.com/embed/-aG5_pdZ6cs",
+      "video": "",
       "bannerInfo": "img/banner-envios.png",
-      "whatsapp": "https://wa.me/573127945678?text=Quiero%20comprar%20la%20Power%20Bank%20Magnética"
+      "whatsapp": "https://wa.me/573127945678?text=Quiero%20comprar%20los%20Zapatos%20de%20Mujer"
     }
   ]
 }
