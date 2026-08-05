@@ -466,7 +466,96 @@
     padding-right: 60px;
     padding-left: 59px;
   }
-}.background {
+}
+
+/* ========================================
+   ESTILOS DEL CARRUSEL MEJORADO - INICIO
+   ======================================== */
+
+/* Contenedor del carrusel con desplazamiento horizontal */
+#productos-destacados-carousel,
+#tecnologia-carousel {
+  display: flex !important;
+  overflow-x: auto !important;
+  scroll-snap-type: x mandatory;
+  gap: 20px;
+  padding-bottom: 20px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Ocultar barra de desplazamiento pero mantener funcionalidad */
+#productos-destacados-carousel::-webkit-scrollbar,
+#tecnologia-carousel::-webkit-scrollbar {
+  height: 6px;
+}
+
+#productos-destacados-carousel::-webkit-scrollbar-thumb,
+#tecnologia-carousel::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+/* Cada tarjeta de producto en el carrusel */
+#productos-destacados-carousel .u-products-item,
+#tecnologia-carousel .u-products-item {
+  flex: 0 0 280px !important;
+  scroll-snap-align: start;
+}
+
+/* Estandarización de imágenes de productos */
+#productos-destacados-carousel img,
+#tecnologia-carousel img,
+.u-repeater-item img,
+.u-list-item-product img,
+.u-image-product,
+.u-products-item img {
+  width: 100% !important;
+  height: 250px !important;
+  object-fit: cover !important;
+  border-radius: 8px 8px 0 0;
+}
+
+/* Rediseño visual de la tarjeta de producto */
+.u-products-item,
+.u-repeater-item,
+.u-list-item-product {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #eaeaea;
+}
+
+.u-products-item:hover,
+.u-repeater-item:hover,
+.u-list-item-product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+/* Botones del carrusel mejorados */
+.u-gallery-nav-prev,
+.u-gallery-nav-next {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  transition: background 0.3s !important;
+  z-index: 10 !important;
+}
+
+.u-gallery-nav-prev:hover,
+.u-gallery-nav-next:hover {
+  background-color: rgba(0, 0, 0, 0.9) !important;
+}
+
+/* En móviles se ocultan los botones y se usa touch */
+@media (max-width: 768px) {
+  .u-gallery-nav-prev,
+  .u-gallery-nav-next {
+    display: none !important;
+  }
+}
+
+.background {
 .fondo-tecnonel {
     background: radial-gradient(
         circle at top left,
