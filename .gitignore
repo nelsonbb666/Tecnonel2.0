@@ -1,46 +1,4 @@
-# Examples
-
-## Project with artifacts
-```
-# Compiled and build artifacts
-*.pyc
-__pycache__/
-*.o
-*.obj
-dist/
-build/
-target/
-
-# Dependencies
-.venv/
-venv/
-.env
-.env.local
-.env.*
-
-# Logs and temp files
-*.log
-*.tmp
-*.swp
-
-# Editors
-.vscode/
-.idea/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Coverage
-coverage/
-htmlcov/
-.coverage
-
-# Original rules preserved
-*.log
-```
-
-## Project with only source files
-```
-# No ignores needed for source-only changes
+```css
+/* No build artifacts, dependencies, or temp files detected in changes */
+/* Only source/config files present - no ignores needed */
 ```
