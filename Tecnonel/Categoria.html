@@ -86,18 +86,11 @@
     <div class="u-clearfix u-sheet u-sheet-1">
         <h2 id="category-title" class="u-align-center u-custom-font u-text u-text-1">Cargando categoría...</h2>
         
-        <!-- Contenedor del carrusel con botones -->
-        <div class="carousel-container">
-            <button class="carousel-btn prev-btn" onclick="scrollCarousel(-1)">&#10094;</button>
-            
-            <!-- Contenedor de productos -->
-            <div id="products-container" class="u-expanded-width u-list u-list-1">
-                <div class="u-repeater u-repeater-1" id="products-grid">
-                    <!-- Los productos se cargarán aquí dinámicamente -->
-                </div>
+        <!-- Contenedor de productos en grid (filas y columnas) -->
+        <div id="products-container" class="u-expanded-width u-list u-list-1">
+            <div class="u-repeater u-repeater-1" id="products-grid">
+                <!-- Los productos se cargarán aquí dinámicamente -->
             </div>
-            
-            <button class="carousel-btn next-btn" onclick="scrollCarousel(1)">&#10095;</button>
         </div>
         
         <!-- Mensaje cuando no hay productos -->
@@ -241,16 +234,6 @@ async function loadProducts() {
 
 // Cargar productos cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', loadProducts);
-
-// Función para mover el carrusel
-function scrollCarousel(direction) {
-    const grid = document.getElementById('products-grid');
-    const scrollAmount = 300; // Pixeles que se desplaza por cada clic
-    grid.scrollBy({
-        left: direction * scrollAmount,
-        behavior: 'smooth'
-    });
-}
 </script>
 
 </body>
