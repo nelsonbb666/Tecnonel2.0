@@ -86,7 +86,7 @@
     </section>
     <section class="u-clearfix u-grey-5 u-section-2" id="block-14">
       <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-sheet-1">
-        <img class="custom-expanded u-image u-image-contain u-image-default u-image-1" src="../Tecnonel/img/banner-envios.png" alt="" data-image-width="2029" data-image-height="775">
+        <img class="custom-expanded u-image u-image-contain u-image-default u-image-1" src="../images/banner-envios.png" alt="" data-image-width="2029" data-image-height="775">
       </div>
     </section>
     
@@ -105,7 +105,7 @@ function formatPrice(price) {
 // Función para crear tarjeta de producto
 function createProductCard(product) {
     const imageUrl = product.imagenes && product.imagenes[0] 
-        ? (product.imagenes[0].startsWith('http') ? product.imagenes[0] : '../Tecnonel/' + product.imagenes[0])
+        ? (product.imagenes[0].startsWith('http') ? product.imagenes[0] : product.imagenes[0])
         : '../images/default-product.png';
     
     const hasDiscount = product.precioOriginal && parseFloat(product.precioOriginal) > parseFloat(product.precio);
