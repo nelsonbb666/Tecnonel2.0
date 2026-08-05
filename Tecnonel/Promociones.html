@@ -91,11 +91,20 @@
     
     <section class="u-clearfix u-white u-section-2" id="block-6">
       <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-sheet-1">
-        <div class="u-expanded-width u-list u-list-1">
-          <div class="u-repeater u-repeater-1" id="promociones-grid">
-            <!-- Los productos se cargarán aquí dinámicamente -->
-          </div>
+        
+        <!-- Contenedor del carrusel con botones -->
+        <div class="carousel-container">
+            <button class="carousel-btn prev-btn" onclick="scrollCarousel(-1)">&#10094;</button>
+            
+            <div class="u-expanded-width u-list u-list-1">
+              <div class="u-repeater u-repeater-1" id="promociones-grid">
+                <!-- Los productos se cargarán aquí dinámicamente -->
+              </div>
+            </div>
+            
+            <button class="carousel-btn next-btn" onclick="scrollCarousel(1)">&#10095;</button>
         </div>
+        
         <div id="no-products" class="u-align-center u-text u-text-2" style="display: none; padding: 40px;">
             <p>No hay productos en promoción disponibles.</p>
         </div>
@@ -169,6 +178,16 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('no-products').style.display = 'block';
         });
 });
+
+// Función para mover el carrusel
+function scrollCarousel(direction) {
+    const grid = document.getElementById('promociones-grid');
+    const scrollAmount = 300; // Pixeles que se desplaza por cada clic
+    grid.scrollBy({
+        left: direction * scrollAmount,
+        behavior: 'smooth'
+    });
+}
 </script>
 
 </body>

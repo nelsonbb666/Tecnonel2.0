@@ -74,11 +74,20 @@
       <div class="u-clearfix u-sheet u-sheet-1">
         <h2 class="u-align-left u-text u-text-default u-text-1" data-animation-name="customAnimationIn" data-animation-duration="1500">Explora los productos mas comprados</h2>
         <p class="u-align-left u-text u-text-default u-text-2" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500">aqui puedes ver algunos de nuestros mejores productos:</p>
-        <div class="u-expanded-width u-list u-list-1">
-          <div class="u-repeater u-repeater-1" id="popular-grid">
-            <!-- Los productos se cargarán aquí dinámicamente -->
-          </div>
+        
+        <!-- Contenedor del carrusel con botones -->
+        <div class="carousel-container">
+            <button class="carousel-btn prev-btn" onclick="scrollCarousel(-1)">&#10094;</button>
+            
+            <div class="u-expanded-width u-list u-list-1">
+              <div class="u-repeater u-repeater-1" id="popular-grid">
+                <!-- Los productos se cargarán aquí dinámicamente -->
+              </div>
+            </div>
+            
+            <button class="carousel-btn next-btn" onclick="scrollCarousel(1)">&#10095;</button>
         </div>
+        
         <div id="no-products" class="u-align-center u-text u-text-2" style="display: none; padding: 40px;">
             <p>No hay productos populares disponibles.</p>
         </div>
@@ -146,6 +155,16 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('no-products').style.display = 'block';
         });
 });
+
+// Función para mover el carrusel
+function scrollCarousel(direction) {
+    const grid = document.getElementById('popular-grid');
+    const scrollAmount = 300; // Pixeles que se desplaza por cada clic
+    grid.scrollBy({
+        left: direction * scrollAmount,
+        behavior: 'smooth'
+    });
+}
 </script>
 
 </body>
