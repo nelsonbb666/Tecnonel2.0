@@ -1,4 +1,4 @@
 ```css
-/* No build artifacts, dependencies, or temp files detected in changes */
-/* Only source/config files present - no ignores needed */
+/* No build artifacts, dependencies, or temporary files detected in changes */
+/* Only source files (.css, .html) were modified */
 ```
