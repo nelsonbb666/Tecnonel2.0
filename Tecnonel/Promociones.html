@@ -117,7 +117,7 @@ function formatPrice(price) {
 // Función para crear tarjeta de producto
 function createProductCard(product) {
     const imageUrl = product.imagenes && product.imagenes[0] 
-        ? (product.imagenes[0].startsWith('http') ? product.imagenes[0] : '../Tecnonel/' + product.imagenes[0])
+        ? (product.imagenes[0].startsWith('http') ? product.imagenes[0] : product.imagenes[0])
         : '../images/default-product.png';
     
     const hasDiscount = product.precioOriginal && parseFloat(product.precioOriginal) > parseFloat(product.precio);

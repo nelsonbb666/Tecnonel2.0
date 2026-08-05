@@ -199,7 +199,7 @@
               
               product.imagenes.forEach((image, index) => {
                 const isActive = index === 0 ? 'u-active' : '';
-                const imageUrl = image.startsWith('http') ? image : '../Tecnonel/' + image;
+                const imageUrl = image.startsWith('http') ? image : image;
                 
                 galleryHTML += `
                   <div class="u-carousel-item u-gallery-item u-carousel-item-1 ${isActive}">
@@ -247,7 +247,7 @@
             // Banner de envíos
             const bannerImg = document.querySelector('.u-image-2');
             if (bannerImg && product.bannerInfo) {
-              bannerImg.src = '../Tecnonel/' + product.bannerInfo;
+              bannerImg.src = product.bannerInfo;
             }
             
             // Configurar botón de comprar (WhatsApp)
