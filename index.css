@@ -586,3 +586,77 @@
     #080808;
 }
 }
+
+/* ========================================
+   CORRECCIÓN FINAL - TARJETAS UNIFORMES
+   ======================================== */
+
+/* Forzar tamaño exacto de 300x470px para TODOS los items de producto */
+.u-section-2 .u-products-item,
+.u-section-2 .u-repeater-item,
+.u-section-3 .u-products-item,
+.u-section-3 .u-repeater-item {
+  width: 300px !important;
+  max-width: 300px !important;
+  min-width: 300px !important;
+  height: 470px !important;
+  max-height: 470px !important;
+  min-height: 470px !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Forzar container-layout uniforme */
+.u-section-2 .u-container-layout,
+.u-section-3 .u-container-layout,
+.u-section-2 .u-container-layout-1,
+.u-section-2 .u-container-layout-2,
+.u-section-2 .u-container-layout-3,
+.u-section-2 .u-container-layout-4,
+.u-section-2 .u-container-layout-5,
+.u-section-2 .u-container-layout-6,
+.u-section-3 .u-container-layout-1,
+.u-section-3 .u-container-layout-2,
+.u-section-3 .u-container-layout-3,
+.u-section-3 .u-container-layout-4 {
+  padding: 15px !important;
+  box-sizing: border-box !important;
+  height: 220px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+/* Forzar imágenes con corte uniforme */
+.u-section-2 .u-image,
+.u-section-3 .u-image,
+.u-section-2 .u-image-1,
+.u-section-2 .u-image-2,
+.u-section-2 .u-image-3,
+.u-section-2 .u-image-4,
+.u-section-2 .u-image-5,
+.u-section-2 .u-image-6,
+.u-section-3 .u-image-1,
+.u-section-3 .u-image-2,
+.u-section-3 .u-image-3,
+.u-section-3 .u-image-4 {
+  width: 100% !important;
+  height: 250px !important;
+  max-height: 250px !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Ajustar repeater para alineación horizontal */
+.u-section-2 .u-repeater-1,
+.u-section-3 .u-repeater-1 {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  gap: 10px !important;
+  min-height: 470px !important;
+}
