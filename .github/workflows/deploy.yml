@@ -7,6 +7,13 @@ on:
   workflow_dispatch: # Permite ejecutar manualmente desde la UI de GitHub
 
 # Permisos requeridos para GitHub Pages y OIDC
+name: Deploy Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
 permissions:
   contents: read
   pages: write
@@ -38,5 +45,15 @@ jobs:
           path: '.'
 
       - name: Desplegar en GitHub Pages
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
