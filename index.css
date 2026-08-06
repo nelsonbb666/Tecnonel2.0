@@ -509,6 +509,21 @@
   scroll-snap-align: start;
   box-sizing: border-box !important;
   overflow: hidden !important;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #eaeaea;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+#productos-destacados-carousel .u-products-item:hover,
+#tecnologia-carousel .u-products-item:hover,
+.u-products-item:hover,
+.u-repeater-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
 /* Estandarización de imágenes de productos - CORTE UNIFORME */
@@ -525,26 +540,6 @@
   border-radius: 8px 8px 0 0;
 }
 
-/* Rediseño visual de la tarjeta de producto */
-.u-products-item,
-.u-repeater-item,
-.u-list-item-product {
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid #eaeaea;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-.u-products-item:hover,
-.u-repeater-item:hover,
-.u-list-item-product:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-}
-
 /* Container layout para asegurar tamaño uniforme */
 .u-container-layout {
   padding: 15px !important;
@@ -552,6 +547,7 @@
   height: 100% !important;
   display: flex !important;
   flex-direction: column !important;
+  justify-content: space-between !important;
 }
 
 /* Botones del carrusel mejorados */
