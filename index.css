@@ -496,14 +496,22 @@
   border-radius: 10px;
 }
 
-/* Cada tarjeta de producto en el carrusel */
+/* Cada tarjeta de producto en el carrusel - TAMAÑO UNIFORME 300x470px */
 #productos-destacados-carousel .u-products-item,
-#tecnologia-carousel .u-products-item {
-  flex: 0 0 280px !important;
+#tecnologia-carousel .u-products-item,
+.u-products-item,
+.u-repeater-item {
+  flex: 0 0 300px !important;
+  width: 300px !important;
+  max-width: 300px !important;
+  height: 470px !important;
+  max-height: 470px !important;
   scroll-snap-align: start;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
 }
 
-/* Estandarización de imágenes de productos */
+/* Estandarización de imágenes de productos - CORTE UNIFORME */
 #productos-destacados-carousel img,
 #tecnologia-carousel img,
 .u-repeater-item img,
@@ -513,6 +521,7 @@
   width: 100% !important;
   height: 250px !important;
   object-fit: cover !important;
+  object-position: center center !important;
   border-radius: 8px 8px 0 0;
 }
 
@@ -525,6 +534,8 @@
   box-shadow: 0 4px 15px rgba(0,0,0,0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid #eaeaea;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 .u-products-item:hover,
@@ -532,6 +543,15 @@
 .u-list-item-product:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+/* Container layout para asegurar tamaño uniforme */
+.u-container-layout {
+  padding: 15px !important;
+  box-sizing: border-box !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 /* Botones del carrusel mejorados */
