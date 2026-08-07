@@ -693,4 +693,37 @@
   gap: 8px !important;
   min-height: 470px !important;
 }
+
+/* Estilos para la barra de progreso del carrusel */
+.carousel-progress-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 15px auto 0;
+  padding: 0 20px;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.carousel-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #478ac9, #6ba3d5);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+/* Ajuste para que los botones de navegación estén sobre el carrusel */
+#productos-destacados-carousel {
+  position: relative;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+#productos-destacados-carousel::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
 }/* FORZAR DEPLOY PRODUCTOS 300x470 */
