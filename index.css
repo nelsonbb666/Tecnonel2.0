@@ -35,9 +35,9 @@
 .u-section-2 .u-repeater-1 {
   grid-auto-columns: 300px;
   grid-template-columns: repeat(auto-fit, 300px);
-  --gap: 12px;
-  column-gap: 12px;
-  row-gap: 12px;
+  --gap: 8px;
+  column-gap: 8px;
+  row-gap: 8px;
   min-height: 470px;
 }
 
@@ -511,7 +511,7 @@
   display: flex !important;
   overflow-x: auto !important;
   scroll-snap-type: x mandatory;
-  gap: 20px;
+  gap: 8px;
   padding-bottom: 20px;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
@@ -690,7 +690,7 @@
   display: flex !important;
   flex-wrap: nowrap !important;
   overflow-x: auto !important;
-  gap: 10px !important;
+  gap: 8px !important;
   min-height: 470px !important;
 }
 }/* FORZAR DEPLOY PRODUCTOS 300x470 */
