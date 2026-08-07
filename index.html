@@ -128,7 +128,137 @@
         <div class="u-list-control"></div>
       </div>
       
+      <style>
+        /* Estilos para el carrusel de productos destacados */
+        #productos-destacados-carousel {
+          overflow-x: auto;
+          scroll-behavior: smooth;
+          -webkit-overflow-scrolling: touch;
+        }
+        
+        #productos-destacados-carousel .u-repeater {
+          display: flex;
+          flex-wrap: nowrap;
+        }
+        
+        #productos-destacados-carousel .u-products-item {
+          flex: 0 0 auto;
+          min-width: 280px;
+          max-width: 280px;
+        }
+        
+        /* Ocultar barra de scroll pero mantener funcionalidad */
+        #productos-destacados-carousel::-webkit-scrollbar {
+          height: 6px;
+        }
+        
+        #productos-destacados-carousel::-webkit-scrollbar-track {
+          background: rgba(0, 0, 0, 0.1);
+          border-radius: 3px;
+        }
+        
+        #productos-destacados-carousel::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.3);
+          border-radius: 3px;
+        }
+        
+        /* Barra de progreso del carrusel */
+        .carousel-progress-container {
+          width: 100%;
+          height: 4px;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 2px;
+          margin-top: 15px;
+          overflow: hidden;
+        }
+        
+        .carousel-progress-bar {
+          height: 100%;
+          width: 0%;
+          background: linear-gradient(90deg, #ff6b6b, #feca57);
+          border-radius: 2px;
+          transition: width 0.3s ease;
+        }
+        
+        /* Estilos para uniformar el tamaño de los productos en el carrusel de destacados */
+        #carousel-repeater .u-products-item {
+          height: 420px !important;
+          display: flex !important;
+          flex-direction: column !important;
+          box-sizing: border-box !important;
+          overflow: hidden !important;
+        }
+        
+        #carousel-repeater .u-container-layout {
+          display: flex !important;
+          flex-direction: column !important;
+          height: 100% !important;
+          padding: 15px !important;
+          box-sizing: border-box !important;
+        }
+        
+        #carousel-repeater .u-image {
+          height: 200px !important;
+          width: 100% !important;
+          object-fit: cover !important;
+          flex-shrink: 0 !important;
+        }
+        
+        #carousel-repeater .u-text {
+          min-height: 40px !important;
+          max-height: 40px !important;
+          overflow: hidden !important;
+          text-overflow: ellipsis !important;
+          display: -webkit-box !important;
+          -webkit-line-clamp: 2 !important;
+          -webkit-box-orient: vertical !important;
+          flex-shrink: 0 !important;
+          margin: 10px 0 !important;
+        }
+        
+        #carousel-repeater .u-product-price {
+          flex-shrink: 0 !important;
+          margin-bottom: 10px !important;
+        }
+        
+        #carousel-repeater .u-btn {
+          margin-top: auto !important;
+          flex-shrink: 0 !important;
+          white-space: nowrap !important;
+        }
+      </style>
+      
       <script>
+        // Función global para desplazar el carrusel horizontalmente y actualizar la barra de progreso
+        window.scrollCarousel = function(carouselId, direction) {
+          const carousel = document.getElementById(carouselId);
+          if (!carousel) return;
+          
+          const repeater = carousel.querySelector('.u-repeater');
+          if (!repeater) return;
+          
+          const itemWidth = repeater.querySelector('.u-products-item')?.offsetWidth || 300;
+          const scrollAmount = itemWidth * direction;
+          
+          carousel.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+          });
+        };
+
+        // Actualizar la barra de progreso cuando se hace scroll
+        window.updateProgressBar = function() {
+          const carousel = document.getElementById('productos-destacados-carousel');
+          const progressBar = document.getElementById('carousel-progress');
+          if (!carousel || !progressBar) return;
+          
+          const scrollLeft = carousel.scrollLeft;
+          const scrollWidth = carousel.scrollWidth - carousel.clientWidth;
+          const progress = scrollWidth > 0 ? (scrollLeft / scrollWidth) * 100 : 0;
+          
+          progressBar.style.width = progress + '%';
+        };
+
         // Cargar productos destacados en el carrusel de inicio
         document.addEventListener('DOMContentLoaded', function() {
           fetch('products/products.json')
@@ -192,6 +322,15 @@
               });
               
               repeater.innerHTML = htmlContent;
+              
+              // Escuchar eventos de scroll para actualizar la barra después de cargar productos
+              const carousel = document.getElementById('productos-destacados-carousel');
+              if (carousel) {
+                carousel.addEventListener('scroll', updateProgressBar);
+                // Actualizar también cuando se cargan los productos dinámicamente
+                const observer = new MutationObserver(updateProgressBar);
+                observer.observe(carousel, { childList: true, subtree: true });
+              }
             })
             .catch(error => {
               console.error('Error cargando productos destacados:', error);
@@ -221,49 +360,6 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
       <div class="carousel-progress-container">
         <div class="carousel-progress-bar" id="carousel-progress"></div>
       </div>
-
-      <script>
-        // Función para desplazar el carrusel horizontalmente y actualizar la barra de progreso
-        function scrollCarousel(carouselId, direction) {
-          const carousel = document.getElementById(carouselId);
-          if (!carousel) return;
-          
-          const repeater = carousel.querySelector('.u-repeater');
-          if (!repeater) return;
-          
-          const itemWidth = repeater.querySelector('.u-products-item')?.offsetWidth || 300;
-          const scrollAmount = itemWidth * direction;
-          
-          carousel.scrollBy({
-            left: scrollAmount,
-            behavior: 'smooth'
-          });
-        }
-
-        // Actualizar la barra de progreso cuando se hace scroll
-        function updateProgressBar() {
-          const carousel = document.getElementById('productos-destacados-carousel');
-          const progressBar = document.getElementById('carousel-progress');
-          if (!carousel || !progressBar) return;
-          
-          const scrollLeft = carousel.scrollLeft;
-          const scrollWidth = carousel.scrollWidth - carousel.clientWidth;
-          const progress = scrollWidth > 0 ? (scrollLeft / scrollWidth) * 100 : 0;
-          
-          progressBar.style.width = progress + '%';
-        }
-
-        // Escuchar eventos de scroll para actualizar la barra
-        document.addEventListener('DOMContentLoaded', function() {
-          const carousel = document.getElementById('productos-destacados-carousel');
-          if (carousel) {
-            carousel.addEventListener('scroll', updateProgressBar);
-            // Actualizar también cuando se cargan los productos dinámicamente
-            const observer = new MutationObserver(updateProgressBar);
-            observer.observe(carousel, { childList: true, subtree: true });
-          }
-        });
-      </script>
     </section>
     <section class="u-clearfix u-gradient u-section-3" id="block-3">
       <div class="u-clearfix u-sheet u-sheet-1">
