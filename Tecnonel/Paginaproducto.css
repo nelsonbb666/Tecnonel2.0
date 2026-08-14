@@ -180,10 +180,34 @@
   width: 100%;
   max-width: 700px;
   height: auto;
-  min-height: 500px;
+  aspect-ratio: 1/1;
   margin: 0 auto;
   border: 3px solid #e9ecef;
   padding: 15px;
+  position: relative;
+}
+
+.u-section-1 .u-carousel-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.u-section-1 .u-back-slide {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.u-section-1 .u-back-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 15px;
 }
 
 .u-section-1 .u-carousel-item-1 {
@@ -200,11 +224,33 @@
 }
 
 .u-section-1 .u-carousel-thumbnails-1 {
-  padding: 10px 0 0;
+  padding: 15px 0 0;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
   gap: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #00b894 #f1f1f1;
+}
+
+.u-section-1 .u-carousel-thumbnails-1::-webkit-scrollbar {
+  height: 6px;
+}
+
+.u-section-1 .u-carousel-thumbnails-1::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.u-section-1 .u-carousel-thumbnails-1::-webkit-scrollbar-thumb {
+  background: #00b894;
+  border-radius: 3px;
+}
+
+.u-section-1 .u-carousel-thumbnails-1::-webkit-scrollbar-thumb:hover {
+  background: #00cec9;
 }
 
 .u-section-1 .u-carousel-thumbnail-1 {
@@ -356,6 +402,12 @@
     padding: 20px;
     border-radius: 15px;
   }
+
+  /* Galería cuadrada en tablets */
+  .u-section-1 .u-gallery-1 {
+    aspect-ratio: 1/1;
+    max-width: 600px;
+  }
 }
 
 @media (max-width: 991px) {
@@ -379,6 +431,8 @@
     margin-top: 0;
     margin-left: auto;
     margin-right: auto;
+    aspect-ratio: 1/1;
+    max-width: 500px;
   }
 
   .u-section-1 .u-carousel-control-1 {
@@ -450,10 +504,11 @@
 
   .u-section-1 .u-gallery-1 {
     width: 100%;
-    max-width: 540px;
+    max-width: 450px;
     margin-top: 0;
     margin-left: auto;
     margin-right: auto;
+    aspect-ratio: 1/1;
   }
 
   .u-section-1 .u-carousel-control-1 {
@@ -572,9 +627,9 @@
 
   .u-section-1 .u-gallery-1 {
     width: 100%;
-    max-width: 424px;
+    max-width: 350px;
     height: auto;
-    min-height: 338px;
+    aspect-ratio: 1/1;
     margin-top: 0;
     margin-left: auto;
     margin-right: auto;
