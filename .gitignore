@@ -69,4 +69,7 @@ htmlcov/
 *.tar.bz2
 *.tar.xz
 *.tar.zst
+```css
+/* No build artifacts, dependencies, or temporary files detected in changes */
+/* Only source files (.css, .html) were modified */
 ```
