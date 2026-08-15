@@ -105,8 +105,8 @@
       </div></header>
     <section class="u-clearfix u-section-1" id="block-2">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h2 id="search-results-title" class="u-align-center u-text u-text-1">Resultados de Búsqueda</h2>
-        <p id="search-results-message" class="u-align-center u-text u-text-2" style="margin-top: 10px; color: #666;"></p>
+        <h2 id="search-results-title" class="u-align-center u-text u-text-1" style="display: none;">Resultados de Búsqueda</h2>
+        <p id="search-results-message" class="u-align-center u-text u-text-2" style="margin-top: 10px; color: #666; display: none;"></p>
         <form action="#" class="u-border-1 u-border-grey-30 u-search u-search-left u-white u-search-1" id="search-form">
           <button class="u-search-button" type="submit"><span class="u-search-icon u-spacing-10">
               <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 56.966 56.966"><use xlink:href="#svg-6a57"></use></svg>
@@ -190,22 +190,27 @@
         function displayResults(products, searchTerm) {
           resultsContainer.innerHTML = '';
           
-          // Actualizar título
-          if (searchTerm) {
+          // Solo mostrar título y mensaje si hay un término de búsqueda válido
+          if (searchTerm && searchTerm.trim() !== '') {
             resultsTitle.textContent = `Resultados de Búsqueda: "${searchTerm}"`;
+            resultsTitle.style.display = 'block';
+            
             if (products.length > 0) {
               resultsMessage.textContent = `${products.length} producto(s) encontrado(s)`;
             } else {
               resultsMessage.textContent = `No se encontraron productos relacionados con "${searchTerm}". Intenta con otra búsqueda.`;
             }
-          } else {
+            resultsMessage.style.display = 'block';
+          } else if (searchTerm === '' && products.length > 0) {
+            // Mostrar todos los productos sin mensaje especial
             resultsTitle.textContent = 'Todos los Productos';
+            resultsTitle.style.display = 'block';
             resultsMessage.textContent = `${products.length} producto(s) disponible(s)`;
+            resultsMessage.style.display = 'block';
           }
+          // Si no hay searchTerm y no hay productos, mantener todo oculto
           
-          resultsMessage.style.display = 'block';
-          
-          if (products.length === 0) {
+          if (products.length === 0 && searchTerm && searchTerm.trim() !== '') {
             resultsContainer.innerHTML = `
               <div style="grid-column: 1 / -1; text-align: center; padding: 50px 20px;">
                 <svg style="width: 80px; height: 80px; color: #ccc; margin-bottom: 20px;" fill="currentColor" viewBox="0 0 20 20">
@@ -215,6 +220,10 @@
                 <p style="color: #999;">Intenta con otros términos de búsqueda</p>
               </div>
             `;
+            return;
+          }
+          
+          if (products.length === 0) {
             return;
           }
           
