@@ -133,31 +133,36 @@
         // Cargar productos desde JSON
         let allProducts = [];
         
+        // Obtener término de búsqueda de la URL PRIMERO
+        const urlParams = new URLSearchParams(window.location.search);
+        let searchTerm = urlParams.get('search');
+        
+        // Validar término de búsqueda - SI ES NULL O VACÍO, NO HACER NADA
+        if (!searchTerm || searchTerm.trim() === '' || searchTerm.toLowerCase() === 'null') {
+          resultsTitle.style.display = 'none';
+          resultsMessage.style.display = 'none';
+          searchForm.style.display = 'none';
+          resultsContainer.innerHTML = '';
+          return; // DETENER EJECUCIÓN AQUÍ
+        }
+        
+        // Limpiar término
+        searchTerm = searchTerm.trim();
+        
         fetch('../products/products.json')
           .then(response => response.json())
           .then(data => {
             allProducts = data.productos || data;
             
-            // Obtener término de búsqueda de la URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const searchTerm = urlParams.get('search');
-        
-        // Solo buscar si hay un término válido
-        if (searchTerm && searchTerm.trim() !== '') {
-          searchInput.value = searchTerm;
-          performSearch(searchTerm);
-        } else {
-          // Si no hay término, mantener la página limpia (no mostrar nada)
-          resultsTitle.style.display = 'none';
-          resultsMessage.style.display = 'none';
-          searchInput.style.display = 'none';
-          resultsContainer.innerHTML = '';
-        }
+            // Ahora sí, realizar la búsqueda
+            searchInput.value = searchTerm;
+            performSearch(searchTerm);
           })
           .catch(error => {
             console.error('Error cargando productos:', error);
             resultsMessage.textContent = 'Error cargando productos. Por favor recarga la página.';
             resultsMessage.style.display = 'block';
+            resultsTitle.style.display = 'block';
           });
         
         // Manejar envío del formulario
@@ -180,10 +185,16 @@
           
           // Filtrar productos
           const filteredProducts = allProducts.filter(product => {
-            return product.titulo.toLowerCase().includes(searchTermLower) ||
-                   product.descripcion.toLowerCase().includes(searchTermLower) ||
-                   product.categoria.toLowerCase().includes(searchTermLower) ||
-                   product.id.toLowerCase().includes(searchTermLower);
+            // Usar nombres de propiedades correctos según products.json
+            const title = (product.title || product.titulo || '').toLowerCase();
+            const description = (product.description || product.descripcion || '').toLowerCase();
+            const category = (product.category || product.categoria || '').toLowerCase();
+            const id = (product.id || '').toString().toLowerCase();
+            
+            return title.includes(searchTermLower) ||
+                   description.includes(searchTermLower) ||
+                   category.includes(searchTermLower) ||
+                   id.includes(searchTermLower);
           });
           
           // Mostrar resultados
@@ -194,27 +205,23 @@
         function displayResults(products, searchTerm) {
           resultsContainer.innerHTML = '';
           
-          // Validar que el término de búsqueda no sea null o vacío
-          const hasValidSearchTerm = searchTerm && searchTerm.trim() !== '';
+          // Mostrar título con el término buscado
+          resultsTitle.textContent = `Resultados de Búsqueda: "${searchTerm}"`;
+          resultsTitle.style.display = 'block';
+          searchForm.style.display = 'flex';
           
-          if (hasValidSearchTerm) {
-            resultsTitle.textContent = `Resultados de Búsqueda: "${searchTerm}"`;
-            resultsTitle.style.display = 'block';
-            
-            if (products.length > 0) {
-              resultsMessage.textContent = `${products.length} producto(s) encontrado(s)`;
-            } else {
-              resultsMessage.textContent = `No se encontraron productos relacionados con "${searchTerm}". Intenta con otra búsqueda.`;
-            }
+          if (products.length > 0) {
+            resultsMessage.textContent = `${products.length} producto(s) encontrado(s)`;
             resultsMessage.style.display = 'block';
+            
+            // Crear tarjeta para cada producto
+            products.forEach(product => {
+              const card = createProductCard(product);
+              resultsContainer.appendChild(card);
+            });
           } else {
-            // Si no hay término válido, mantener todo oculto
-            resultsTitle.style.display = 'none';
-            resultsMessage.style.display = 'none';
-            searchInput.style.display = 'none';
-          }
-          
-          if (products.length === 0 && hasValidSearchTerm) {
+            resultsMessage.textContent = `No se encontraron productos relacionados con "${searchTerm}". Intenta con otra búsqueda.`;
+            resultsMessage.style.display = 'block';
             resultsContainer.innerHTML = `
               <div style="grid-column: 1 / -1; text-align: center; padding: 50px 20px;">
                 <svg style="width: 80px; height: 80px; color: #ccc; margin-bottom: 20px;" fill="currentColor" viewBox="0 0 20 20">
@@ -224,23 +231,11 @@
                 <p style="color: #999;">Intenta con otros términos de búsqueda</p>
               </div>
             `;
-            return;
           }
-          
-          if (products.length === 0) {
-            return;
-          }
-          
-          // Crear tarjeta para cada producto
-          products.forEach(product => {
-            const discount = Math.round(((product.precioOriginal - product.precio) / product.precioOriginal) * 100);
-            const productCard = createProductCard(product, discount);
-            resultsContainer.appendChild(productCard);
-          });
         }
         
         // Función para crear tarjeta de producto
-        function createProductCard(product, discount) {
+        function createProductCard(product) {
           const card = document.createElement('div');
           card.style.cssText = 'background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; margin-bottom: 30px;';
           
