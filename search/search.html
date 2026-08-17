@@ -139,16 +139,19 @@
             allProducts = data.productos || data;
             
             // Obtener término de búsqueda de la URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const searchTerm = urlParams.get('search') || '';
-            
-            if (searchTerm) {
-              searchInput.value = searchTerm;
-              performSearch(searchTerm);
-            } else {
-              // Mostrar todos los productos si no hay búsqueda
-              displayResults(allProducts, '');
-            }
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchTerm = urlParams.get('search');
+        
+        // Solo buscar si hay un término válido
+        if (searchTerm && searchTerm.trim() !== '') {
+          searchInput.value = searchTerm;
+          performSearch(searchTerm);
+        } else {
+          // Si no hay término, mantener la página limpia (no mostrar nada)
+          resultsTitle.style.display = 'none';
+          resultsMessage.style.display = 'none';
+          resultsContainer.innerHTML = '';
+        }
           })
           .catch(error => {
             console.error('Error cargando productos:', error);
