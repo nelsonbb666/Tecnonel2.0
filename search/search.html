@@ -200,7 +200,8 @@
           if (hasValidSearchTerm) {
             resultsTitle.textContent = `Resultados de Búsqueda: "${searchTerm}"`;
             resultsTitle.style.display = 'block';
-            
+            searchForm.style.display = 'block';
+                        
             if (products.length > 0) {
               resultsMessage.textContent = `${products.length} producto(s) encontrado(s)`;
             } else {
