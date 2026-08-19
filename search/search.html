@@ -133,7 +133,7 @@
         // Cargar productos desde JSON
         let allProducts = [];
         
-        fetch('../../products/products.json')
+        fetch('../products/products.json')
           .then(response => response.json())
           .then(data => {
             allProducts = data.productos || data;
