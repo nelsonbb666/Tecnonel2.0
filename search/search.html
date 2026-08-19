@@ -1,382 +1,294 @@
 <!DOCTYPE html>
-<html style="font-size: 16px;" lang="es"><head>
+<html style="font-size: 16px;" lang="es">
+  <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Search Results">
-    <meta name="description" content="">
-    <title>Search Page Template</title>
+    <title>Resultados de Búsqueda</title>
+    <!-- Asegúrate de que estos links coincidan con los de tu index.html -->
     <link rel="stylesheet" href="../nicepage.css" media="screen">
-<link rel="stylesheet" href="../Search-Page-Template.css" media="screen">
+    <link rel="stylesheet" href="../search.css" media="screen">
     <script class="u-script" type="text/javascript" src="../jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="../nicepage.js" defer=""></script>
-    <meta name="generator" content="Nicepage 8.6.2, nicepage.com">
     
+    <style>
+      /* Estilos específicos para corregir la cuadrícula de búsqueda */
+      .search-results-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* Centra los productos si hay pocos */
+        gap: 20px;
+        padding: 40px 20px;
+        min-height: 50vh;
+      }
+
+      .u-search-result-card {
+        flex: 0 0 auto;
+        width: 250px; /* Ancho fijo para uniformidad */
+        margin-bottom: 20px;
+        transition: transform 0.2s;
+      }
+      
+      .u-search-result-card:hover {
+        transform: translateY(-5px);
+      }
+
+      /* Forzar imagen cuadrada y uniforme */
+      .u-search-image-container {
+        width: 100%;
+        height: 250px; 
+        overflow: hidden;
+        position: relative;
+        background-color: #f5f5f5;
+      }
+
+      .u-search-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Recorta la imagen para llenar el espacio sin deformarse */
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .u-search-body {
+        padding: 15px;
+        text-align: center;
+        border: 1px solid #eee;
+        border-top: none;
+        background: white;
+      }
+
+      .u-search-title {
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #111;
+        /* Limitar a 2 líneas */
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        height: 3em; 
+      }
+
+      .u-search-price {
+        font-size: 1.2rem;
+        color: #333;
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+
+      .u-search-btn {
+        display: inline-block;
+        padding: 8px 20px;
+        background-color: #111; /* Color de tu tema */
+        color: white;
+        text-decoration: none;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        transition: background 0.3s;
+      }
+
+      .u-search-btn:hover {
+        background-color: #444;
+        color: white;
+      }
+
+      .no-results-msg {
+        width: 100%;
+        text-align: center;
+        padding: 50px;
+        font-size: 1.5rem;
+        color: #666;
+      }
+      
+      /* Ocultar el footer temporalmente si interfiere, pero normalmente se deja */
+      .u-search-loading {
+        text-align: center;
+        width: 100%;
+        padding: 20px;
+        font-style: italic;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body class="u-body u-xl-mode" data-lang="es">
     
-    
-    
-    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&amp;family=Bebas+Neue:wght@400&amp;family=Bangers:wght@400">
-    <script type="application/ld+json">{
-		"@context": "http://schema.org",
-		"@type": "Organization",
-		"name": "",
-		"logo": "images/logo.png",
-		"sameAs": [
-				"https://facebook.com/name",
-				"https://instagram.com/name"
-		]
-}</script>
-    <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="Search Page Template">
-    <meta property="og:type" content="website">
-  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
-  <body data-path-to-root="../" data-include-products="true" class="u-body u-xl-mode" data-lang="es"><header class="u-align-left u-clearfix u-container-align-left u-header u-section-row-container" id="header"><div class="u-section-rows">
-        <div class="u-clearfix u-gradient u-section-row u-section-row-1" id="sec-46aa">
-          <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-            <form action="#" class="u-border-1 u-border-grey-15 u-expanded-width u-radius u-search u-search-layout-icon-input u-search-left u-white u-search-1" data-search-token="no-license" data-href="../search/search.html" data-page-id="262746913">
-              <div class="u-search-overlay"></div>
-              <button class="u-search-button" type="submit"><span class="u-search-icon u-text-grey-70 u-search-icon-1">
-                  <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 56.966 56.966"><use xlink:href="#svg-ebe0"></use></svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg-ebe0" x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve" class="u-svg-content"><path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"></path></svg></span>
-              </button>
-              <input class="u-search-input" type="search" name="search" value="" placeholder="Search">
-            </form>
-          </div>
-          
-          
-          
-          
-          
-        </div>
-        <div class="background u-clearfix u-gradient u-section-row u-section-row-2" id="sec-37e8">
-          <div class="u-clearfix u-sheet u-valign-top-xs u-sheet-2">
-            <a href="#" class="u-image u-logo u-image-1" data-image-width="500" data-image-height="500">
-              <img src="../images/logo.png" class="u-logo-image u-logo-image-1" data-image-width="80">
-            </a>
-            <nav data-position="" class="u-menu u-menu-one-level u-offcanvas u-menu-1" role="navigation" data-responsive-from="MD" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">
-              <div class="menu-collapse u-custom-font" style="font-size: 1.875rem; letter-spacing: 0px; font-family: Bangers; font-weight: 700; text-transform: uppercase;">
-                <a class="u-button-style u-custom---text-color-var u-custom---text-hover-color-var u-custom-active-border-color u-custom-border u-custom-border-color u-custom-borders u-custom-color u-custom-effect-duration u-custom-hover-border-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-text-hover-color u-custom-text-shadow u-custom-text-shadow-blur u-custom-text-shadow-color u-custom-text-shadow-transparency u-custom-text-shadow-x u-custom-text-shadow-y u-custom-top-bottom-menu-spacing u-hamburger-link u-nav-link u-hamburger-link-1" href="#" tabindex="-1" aria-label="Open menu" aria-controls="8091">
-                  <svg class="u-svg-link" viewBox="0 0 24 24"><use xlink:href="#menu-hamburger"></use></svg>
-                  <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
-</g></svg>
-                </a>
-              </div>
-              <div class="u-custom-menu u-nav-container">
-                <ul role="menubar" class="u-custom-font u-nav u-unstyled u-nav-1"><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link u-text-color-var u-text-hover-color-var u-nav-link-2" href="../">Inicio</a>
-</li><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link u-text-color-var u-text-hover-color-var u-nav-link-2" href="../Tecnonel/Categorias.html" target="_blank">Categorias</a>
-</li><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link u-text-color-var u-text-hover-color-var u-nav-link-2" href="../Tecnonel/Promociones.html">Promociones</a>
-</li><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link u-text-color-var u-text-hover-color-var u-nav-link-2" href="../Tecnonel/Popular.html">Popular</a>
-</li><li role="none" class="u-nav-item"><a tabindex="-1" role="menuitem" class="u-button-style u-nav-link u-text-color-var u-text-hover-color-var u-nav-link-2" href="../Acerca-de.html">Ayuda</a>
-</li></ul>
-              </div>
-              <div class="u-custom-menu u-nav-container-collapse" id="8091" role="region" aria-label="Menu panel">
-                <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
-                  <div class="u-inner-container-layout u-sidenav-overflow">
-                    <div class="u-menu-close" tabindex="-1" aria-label="Close menu"></div>
-                    <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2" role="menubar"><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link" href="../">Inicio</a>
-</li><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link" href="../Tecnonel/Categorias.html" target="_blank">Categorias</a>
-</li><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link" href="../Tecnonel/Promociones.html">Promociones</a>
-</li><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link" href="../Tecnonel/Popular.html">Popular</a>
-</li><li role="none" class="u-nav-item"><a tabindex="-1" role="menuitem" class="u-button-style u-nav-link" href="../Acerca-de.html">Ayuda</a>
-</li></ul>
-                  </div>
-                </div>
-                <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
-              </div>
-              <style class="menu-style">@media (max-width: 939px) {
-                    [data-responsive-from="MD"] .u-nav-container {
-                        display: none;
-                    }
-                    [data-responsive-from="MD"] .menu-collapse {
-                        display: block;
-                    }
-                }</style>
-            </nav><!--shopping_cart-->
-            <a class="u-shopping-cart u-shopping-cart-1" data-payment-service="{&quot;id&quot;:&quot;83669fffecb10100a102e15a981aedd1&quot;,&quot;formServices&quot;:[&quot;0a06829d-6df8-ec0e-18bf-ee273cd3966d&quot;],&quot;paymentMethods&quot;:[],&quot;userToken&quot;:&quot;512f8e55-8be9-47c2-9469-998d9cdf838c&quot;}" href="#popup-c728"><span class="u-icon u-icon-rounded u-palette-1-base u-shopping-cart-icon u-text-white u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" style=""><use xlink:href="#svg-67cf"></use></svg><svg class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-67cf"><path d="M14.5,3l-2.1,5H6.1L5.9,7.6L4,3H14.5 M0,0v1h2.1L5,8l-2,4h11v-1H4.6l1-2H13l3-7H3.6L2.8,0H0z M12.5,13
-	c-0.8,0-1.5,0.7-1.5,1.5s0.7,1.5,1.5,1.5s1.5-0.7,1.5-1.5S13.3,13,12.5,13L12.5,13z M4.5,13C3.7,13,3,13.7,3,14.5S3.7,16,4.5,16
-	S6,15.3,6,14.5S5.3,13,4.5,13L4.5,13z"></path></svg><span class="u-icon-circle u-palette-1-base u-shopping-cart-count" style="font-size: 0.75rem;"><!--shopping_cart_count-->0<!--/shopping_cart_count--></span></span>
-            </a><!--/shopping_cart-->
-          </div>
-          
-          
-          
-          
-          
-        </div>
-      </div></header>
-    <section class="u-clearfix u-section-1" id="block-2">
+    <!-- EL ENCABEZADO SE MANTIENE IGUAL QUE EN EL INDEX -->
+    <!-- Copia exactamente el header de tu index.html aquí para garantizar consistencia -->
+    <header class="u-clearfix u-header u-header" id="sec-6d1a">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h2 class="u-align-center u-text u-text-1"> Search Results</h2>
-        <form action="#" class="u-border-1 u-border-grey-30 u-search u-search-left u-white u-search-1" data-search-token="no-license" data-href="../search/search.html" data-page-id="262746913">
-          <button class="u-search-button" type="submit"><span class="u-search-icon u-spacing-10">
-              <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 56.966 56.966"><use xlink:href="#svg-6a57"></use></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg-6a57" x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve" class="u-svg-content"><path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"></path></svg></span>
-          </button>
-          <input class="u-search-input" type="search" name="search" value="" placeholder="Search">
-        </form><!--blog--><!--blog_options_json--><!--{"type":"Recent","source":"","tags":"","count":"3"}--><!--/blog_options_json-->
-        <div class="u-blog u-expanded-width u-layout-grid u-search-results u-blog-1" data-items-per-page="1" data-max-items="3">
-          <div class="u-list-control"></div>
-          <div class="u-repeater u-repeater-1"><!--blog_post-->
-            <div class="u-align-left u-blog-post u-container-align-left u-container-style u-repeater-item u-search-result">
-              <div class="u-container-layout u-similar-container u-container-layout-1"><!--blog_post_header-->
-                <h4 class="u-blog-control u-text u-text-palette-1-base u-text-2">
-                  <a class="u-post-header-link" href="../blog/enviar-5.html"><!--blog_post_header_content-->Search Result 1<!--/blog_post_header_content--></a>
-                </h4><!--/blog_post_header--><!--blog_post_content-->
-                <div class="u-blog-control u-post-content u-text u-text-3"><!--blog_post_content_content-->Paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id suscipit ex. Suspendisse rhoncus laoreet purus quis elementum. Phasellus sed efficitur dolor, et ultricies sapien. Quisque fringilla sit amet dolor commodo efficitur. Aliquam et sem odio. In ullamcorper nisi nunc, et molestie ipsum iaculis sit amet.<!--/blog_post_content_content--></div><!--/blog_post_content-->
-              </div>
-            </div><!--/blog_post--><!--blog_post-->
-            <div class="u-align-left u-blog-post u-container-align-left u-container-style u-repeater-item u-search-result">
-              <div class="u-container-layout u-similar-container u-container-layout-2"><!--blog_post_header-->
-                <h4 class="u-blog-control u-text u-text-palette-1-base u-text-4">
-                  <a class="u-post-header-link" href="../blog/enviar-4.html"><!--blog_post_header_content-->Search Result 2<!--/blog_post_header_content--></a>
-                </h4><!--/blog_post_header--><!--blog_post_content-->
-                <div class="u-blog-control u-post-content u-text u-text-5"><!--blog_post_content_content-->Paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id suscipit ex. Suspendisse rhoncus laoreet purus quis elementum. Phasellus sed efficitur dolor, et ultricies sapien. Quisque fringilla sit amet dolor commodo efficitur. Aliquam et sem odio. In ullamcorper nisi nunc, et molestie ipsum iaculis sit amet.<!--/blog_post_content_content--></div><!--/blog_post_content-->
-              </div>
-            </div><!--/blog_post--><!--blog_post-->
-            <div class="u-align-left u-blog-post u-container-align-left u-container-style u-repeater-item u-search-result">
-              <div class="u-container-layout u-similar-container u-container-layout-3"><!--blog_post_header-->
-                <h4 class="u-blog-control u-text u-text-palette-1-base u-text-6">
-                  <a class="u-post-header-link" href="../blog/enviar-3.html"><!--blog_post_header_content-->Search Result 3<!--/blog_post_header_content--></a>
-                </h4><!--/blog_post_header--><!--blog_post_content-->
-                <div class="u-blog-control u-post-content u-text u-text-7"><!--blog_post_content_content-->Paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id suscipit ex. Suspendisse rhoncus laoreet purus quis elementum. Phasellus sed efficitur dolor, et ultricies sapien. Quisque fringilla sit amet dolor commodo efficitur. Aliquam et sem odio. In ullamcorper nisi nunc, et molestie ipsum iaculis sit amet.<!--/blog_post_content_content--></div><!--/blog_post_content-->
-              </div>
-            </div><!--/blog_post-->
+        <!-- Logo -->
+        <a href="../index.html" class="u-image u-logo u-image-1" data-image-width="512" data-image-height="512">
+          <img src="../images/logo.png" class="u-logo-image u-logo-image-1" alt="Logo">
+        </a>
+        
+        <!-- Menú de Navegación -->
+        <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
+          <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700;">
+            <a class="u-button-style u-custom-active-border-color u-custom-border u-custom-border-color u-custom-borders u-custom-hover-border-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+              <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+              <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect></g></svg>
+            </a>
           </div>
-          <div class="u-list-control"></div>
-        </div><!--/blog-->
+          <div class="u-nav-container">
+            <ul class="u-nav u-unstyled u-nav-1">
+              <li class="u-nav-item"><a class="u-nav-link" href="../index.html">Inicio</a></li>
+              <li class="u-nav-item"><a class="u-nav-link" href="../categories.html">Categorías</a></li>
+              <li class="u-nav-item"><a class="u-nav-link" href="../about.html">Nosotros</a></li>
+              <li class="u-nav-item"><a class="u-nav-link" href="../contact.html">Contacto</a></li>
+            </ul>
+          </div>
+          <!-- Carrito Icono (Simulado, ajusta el link a tu página de carrito) -->
+          <div class="u-cart-wrapper" style="position: absolute; right: 20px; top: 15px;">
+             <a href="../cart.html" class="u-icon u-icon-circle u-palette-1-base u-icon-1">
+               <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 512 512"><use xlink:href="#svg-cart"></use></svg>
+               <svg class="u-svg-content" viewBox="0 0 512 512" id="svg-cart"><path d="M128.6,128.6l14.9,178.8c1.3,15.6,14.4,27.6,30.1,27.6h164.9c15.7,0,28.8-12,30.1-27.6l14.9-178.8H128.6z M256,448 c-26.5,0-48-21.5-48-48h96C304,426.5,282.5,448,256,448z M469.4,96.3c-5.4-6.5-13.5-10.3-22.1-10.3H104.7l-8.6-41.4 C93.7,32.8,83.5,24,71.4,24H32C14.3,24,0,38.3,0,56s14.3,32,32,32h26.3l42.9,205.6c4.9,23.6,25.7,40.4,49.7,40.4h210.3 c24,0,44.8-16.8,49.7-40.4l12.6-60.4h44.5c17.7,0,32-14.3,32-32S487.1,169.2,469.4,169.2h-31.1L469.4,96.3z"></path></svg>
+             </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Sección de Resultados de Búsqueda -->
+    <section class="u-clearfix u-section-1" id="search-section">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h2 class="u-text u-text-default u-title u-text-1" style="margin-top: 30px;">Resultados de: <span id="search-term-display"></span></h2>
+        
+        <!-- Contenedor donde se inyectarán los productos ordenados -->
+        <div id="search-results-grid" class="search-results-container">
+          <div class="u-search-loading">Cargando productos...</div>
+        </div>
       </div>
     </section>
-    
-    
-    
-    
-    <footer class="u-align-center u-clearfix u-container-align-center u-footer u-gradient u-footer" id="footer"><div class="u-clearfix u-sheet u-sheet-1">
-        <p class="u-custom-font u-font-bebas-neue u-text u-text-white u-text-1"> Acerca de Nosotros:<br>En&nbsp;Tecnonel nos especializamos en productos tecnológicos y gadgets innovadores para el hogar, diseñados para hacer tu vida más cómoda, moderna y eficiente. Ofrecemos artículos de calidad, tendencias tecnológicas y soluciones inteligentes con precios accesibles, compra segura y envíos rápidos a toda Colombia.
-        </p>
-        <div class="u-social-icons u-social-icons-1">
-          <a class="u-social-url" target="_blank" data-type="Whatsapp" title="Whatsapp" href=""><span class="u-icon u-social-icon u-social-whatsapp u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-e0da"></use></svg><svg class="u-svg-content" viewBox="0 0 112 112" x="0" y="0" id="svg-e0da"><circle fill="currentColor" cx="56.1" cy="56.1" r="55"></circle><path fill="#FFFFFF" d="M83.8,28.3C77.2,21.7,68.4,18,59,18c-19.3,0-35.1,15.7-35.1,35.1c0,6.2,1.6,12.2,4.7,17.5l-5,18.2L42.2,84
-	c5.1,2.8,10.9,4.3,16.8,4.3h0l0,0c19.3,0,35.1-15.7,35.1-35.1C94.1,43.8,90.5,35,83.8,28.3 M59,82.3L59,82.3
-	c-5.2,0-10.4-1.4-14.9-4.1l-1.1-0.6l-11,2.9L35,69.8l-0.7-1.1c-2.9-4.6-4.5-10-4.5-15.5C29.8,37,42.9,24,59,24
-	c7.8,0,15.1,3,20.6,8.6c5.5,5.5,8.5,12.8,8.5,20.6C88.2,69.2,75.1,82.3,59,82.3 M75,60.5c-0.9-0.4-5.2-2.6-6-2.9
-	c-0.8-0.3-1.4-0.4-2,0.4s-2.3,2.9-2.8,3.4c-0.5,0.6-1,0.7-1.9,0.2c-0.9-0.4-3.7-1.4-7.1-4.4c-2.6-2.3-4.4-5.2-4.9-6.1
-	c-0.5-0.9-0.1-1.4,0.4-1.8c0.4-0.4,0.9-1,1.3-1.5c0.4-0.5,0.6-0.9,0.9-1.5c0.3-0.6,0.1-1.1-0.1-1.5c-0.2-0.4-2-4.8-2.7-6.5
-	c-0.7-1.7-1.4-1.5-2-1.5c-0.5,0-1.1,0-1.7,0c-0.6,0-1.5,0.2-2.3,1.1c-0.8,0.9-3.1,3-3.1,7.3c0,4.3,3.1,8.5,3.6,9.1
-	c0.4,0.6,6.2,9.4,15,13.2c2.1,0.9,3.7,1.4,5,1.8c2.1,0.7,4,0.6,5.5,0.3c1.7-0.3,5.2-2.1,5.9-4.2c0.7-2,0.7-3.8,0.5-4.2
-	C76.5,61.1,75.9,60.9,75,60.5"></path></svg></span>
+
+    <!-- Footer (Mismo que en las demás páginas) -->
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-9c6b">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-social-icons u-spacing-10 u-social-icons-1">
+          <a class="u-social-url" target="_blank" href="https://facebook.com" title="Facebook"><span class="u-icon u-social-facebook u-social-icon u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112"><use xlink:href="#svg-fb"></use></svg><svg class="u-svg-content" viewBox="0 0 112 112" x="0" y="0" id="svg-fb"><path fill="currentColor" d="M75.5,28.8H65.4c-1.5,0-4,0.9-4,4.3v9.4h13.9l-1.5,15.8H61.4v45.1H42.8V58.3h-8.8V42.4h8.8V32.2 c0-8.7,3.9-16.8,19.5-16.8h14V28.8z"></path></svg></span>
           </a>
-          <a class="u-social-url" title="facebook" target="_blank" href="https://facebook.com/name"><span class="u-icon u-social-facebook u-social-icon u-icon-2"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-39d3"></use></svg><svg class="u-svg-content" viewBox="0 0 112 112" x="0" y="0" id="svg-39d3"><circle fill="currentColor" cx="56.1" cy="56.1" r="55"></circle><path fill="#FFFFFF" d="M73.5,31.6h-9.1c-1.4,0-3.6,0.8-3.6,3.9v8.5h12.6L72,58.3H60.8v40.8H43.9V58.3h-8V43.9h8v-9.2
-c0-6.7,3.1-17,17-17h12.5v13.9H73.5z"></path></svg></span>
+          <a class="u-social-url" target="_blank" href="https://instagram.com" title="Instagram"><span class="u-icon u-social-icon u-social-instagram u-icon-2"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112"><use xlink:href="#svg-insta"></use></svg><svg class="u-svg-content" viewBox="0 0 112 112" x="0" y="0" id="svg-insta"><circle fill="currentColor" cx="56.1" cy="56.1" r="55"></circle><path fill="#FFFFFF" d="M55.9,38.2c-9.9,0-17.9,8-17.9,17.9c0,9.9,8,17.9,17.9,17.9c9.9,0,17.9-8,17.9-17.9C73.8,46.2,65.8,38.2,55.9,38.2z M55.9,66.4c-5.7,0-10.3-4.6-10.3-10.3c0-5.7,4.6-10.3,10.3-10.3c5.7,0,10.3,4.6,10.3,10.3C66.2,61.8,61.6,66.4,55.9,66.4z"></path><path fill="#FFFFFF" d="M74.3,33.5c-2.3,0-4.2,1.9-4.2,4.2s1.9,4.2,4.2,4.2s4.2-1.9,4.2-4.2S76.6,33.5,74.3,33.5z"></path><path fill="#FFFFFF" d="M73.1,21.3H38.6c-9.7,0-17.5,7.9-17.5,17.5v34.5c0,9.7,7.9,17.6,17.5,17.6h34.5c9.7,0,17.5-7.9,17.5-17.5V38.8 C90.6,29.1,82.7,21.3,73.1,21.3z M85.6,73.3c0,6.9-5.6,12.5-12.5,12.5H38.6c-6.9,0-12.5-5.6-12.5-12.5V38.8 c0-6.9,5.6-12.5,12.5-12.5h34.5c6.9,0,12.5,5.6,12.5,12.5V73.3z"></path></svg></span>
           </a>
-          <a class="u-social-url" title="instagram" target="_blank" href="https://instagram.com/name"><span class="u-icon u-social-icon u-social-instagram u-icon-3"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-db91"></use></svg><svg class="u-svg-content" viewBox="0 0 112 112" x="0" y="0" id="svg-db91"><circle fill="currentColor" cx="56.1" cy="56.1" r="55"></circle><path fill="#FFFFFF" d="M55.9,38.2c-9.9,0-17.9,8-17.9,17.9C38,66,46,74,55.9,74c9.9,0,17.9-8,17.9-17.9C73.8,46.2,65.8,38.2,55.9,38.2
-z M55.9,66.4c-5.7,0-10.3-4.6-10.3-10.3c-0.1-5.7,4.6-10.3,10.3-10.3c5.7,0,10.3,4.6,10.3,10.3C66.2,61.8,61.6,66.4,55.9,66.4z"></path><path fill="#FFFFFF" d="M74.3,33.5c-2.3,0-4.2,1.9-4.2,4.2s1.9,4.2,4.2,4.2s4.2-1.9,4.2-4.2S76.6,33.5,74.3,33.5z"></path><path fill="#FFFFFF" d="M73.1,21.3H38.6c-9.7,0-17.5,7.9-17.5,17.5v34.5c0,9.7,7.9,17.6,17.5,17.6h34.5c9.7,0,17.5-7.9,17.5-17.5V38.8
-C90.6,29.1,82.7,21.3,73.1,21.3z M83,73.3c0,5.5-4.5,9.9-9.9,9.9H38.6c-5.5,0-9.9-4.5-9.9-9.9V38.8c0-5.5,4.5-9.9,9.9-9.9h34.5
-c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
-          </a>
-          <a class="u-social-url" target="_blank" data-type="Custom" title="Custom" href=""><span class="u-file-icon u-icon u-social-custom u-social-icon u-icon-4"><img src="../images/tiktok.png" alt=""></span>
-          </a>
-          <a class="u-social-url" target="_blank" data-type="YouTube" title="YouTube" href=""><span class="u-icon u-social-icon u-social-youtube u-icon-5"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-1696"></use></svg><svg class="u-svg-content" viewBox="0 0 112 112" x="0" y="0" id="svg-1696"><circle fill="currentColor" cx="56.1" cy="56.1" r="55"></circle><path fill="#FFFFFF" d="M74.9,33.3H37.3c-7.4,0-13.4,6-13.4,13.4v18.8c0,7.4,6,13.4,13.4,13.4h37.6c7.4,0,13.4-6,13.4-13.4V46.7 C88.3,39.3,82.3,33.3,74.9,33.3L74.9,33.3z M65.9,57l-17.6,8.4c-0.5,0.2-1-0.1-1-0.6V47.5c0-0.5,0.6-0.9,1-0.6l17.6,8.9 C66.4,56,66.4,56.8,65.9,57L65.9,57z"></path></svg></span>
+          <a class="u-social-url" target="_blank" href="https://twitter.com" title="Twitter"><span class="u-icon u-social-icon u-social-twitter u-icon-3"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112"><use xlink:href="#svg-tw"></use></svg><svg class="u-svg-content" viewBox="0 0 112 112" x="0" y="0" id="svg-tw"><circle fill="currentColor" cx="56.1" cy="56.1" r="55"></circle><path fill="#FFFFFF" d="M83.8,47.3c0,0.6,0,1.2,0,1.7c0,17.7-13.5,38.2-38.2,38.2C38,87.2,31,85,25,81.2c1,0.1,2.1,0.2,3.2,0.2 c6.3,0,12.1-2.1,16.7-5.7c-5.9-0.1-10.8-4-12.5-9.3c0.8,0.2,1.7,0.2,2.5,0.2c1.2,0,2.4-0.2,3.5-0.5c-6.1-1.2-10.8-6.7-10.8-13.1 v-0.2c1.8,1,3.9,1.6,6.1,1.7C27.3,51,22,45.4,22,38.6c0-1.8,0.2-3.5,0.7-5.1c6.6,8.1,16.5,13.5,27.6,14c-0.2-1-0.4-2-0.4-3.1 c0-7.4,6.1-13.5,13.5-13.5c3.9,0,7.3,1.6,9.8,4.2c3.1-0.6,5.9-1.7,8.5-3.3c-1,3.1-3.1,5.8-5.9,7.4c2.7-0.3,5.3-1,7.7-2.1 C81.7,40.9,79.8,44.3,83.8,47.3z"></path></svg></span>
           </a>
         </div>
-      </div></footer>
-  <section class="u-black u-clearfix u-container-style u-dialog-block u-opacity u-opacity-70 u-payment-dialog u-valign-middle u-dialog-section-4" id="popup-c728">
-      <div class="u-align-center u-container-style u-dialog u-radius-25 u-shape-round u-white u-dialog-1">
-        <div class="u-container-layout u-valign-top u-container-layout-1">
-          <h5 class="u-align-left u-text u-text-1">Buy Now</h5>
-          <div class="u-expanded-width u-products u-products-1" data-site-sorting-prop="created" data-site-sorting-order="desc" data-items-per-page="1">
-            <div class="u-list-control"></div>
-            <div class="u-repeater u-repeater-1">
-              <div class="u-container-style u-products-item u-repeater-item">
-                <div class="u-container-layout u-similar-container u-container-layout-2">
-                  <h5 class="u-align-left u-product-control u-text u-text-2">
-                    <a class="u-product-title-link" href="#">Product 1 Title</a>
-                  </h5>
-                  <div class="u-align-left u-product-control u-product-desc u-text u-text-3">
-                    <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
-                  </div>
-                  <div class="u-align-left u-product-control u-product-quantity u-product-quantity-1">
-                    <div class="u-hidden u-quantity-label">Quantity</div>
-                    <div class="u-border-1 u-border-grey-30 u-quantity-input u-radius-50">
-                      <a class="disabled minus u-button-style u-quantity-button u-text-body-color">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m 4 8 h 8" fill="none" stroke="currentColor" stroke-width="1" fill-rule="evenodd"></path></svg>
-                      </a>
-                      <input class="u-input" type="text" value="1" pattern="[0-9]+">
-                      <a class="plus u-button-style u-quantity-button u-text-body-color">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m 4 8 h 8 M 8 4 v 8" fill="none" stroke="currentColor" stroke-width="1" fill-rule="evenodd"></path></svg>
-                      </a>
-                    </div>
-                  </div>
-                  <div data-add-zero-cents="true" class="u-align-left u-product-control u-product-price u-product-price-1">
-                    <div class="u-price-wrapper u-spacing-10">
-                      <div class="u-old-price" style="text-decoration: line-through !important;">$20.00</div>
-                      <div class="u-price" style="font-size: 1.25rem; font-weight: 700;">$17.00</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="u-list-control"></div>
-          </div>
-          <div class="u-expanded-width u-payment-services u-tab-links-align-justify u-tab-payment u-tab-vertical u-tabs u-payment-services-1" data-payment-order-approved-message="Your order has been approved. Thank you!" data-payment-order-cancelled-message="Unable to process your order. Please try again later.">
-            <ul class="u-tab-list u-unstyled" role="tablist"><li class="u-tab-item" role="presentation"><a class="active u-active-grey-10 u-button-style u-payment-paypal u-tab-link u-text-body-color" id="link-tab-9cb3" href="#tab-9cb3" role="tab" aria-controls="tab-9cb3" aria-selected="true"><input type="radio" class="u-field-input u-grey-15 u-radius-15" name="payment-group" checked="checked"><span>Paypal</span><svg class="u-svg-content" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"><path fill="#009EE3" d="M11,5.9H18c3.8,0,5.2,1.9,4.9,4.7c-0.3,4.7-3.2,7.2-6.9,7.2h-1.9c-0.5,0-0.8,0.3-0.9,1.3l-0.8,4.3
-  c-0.1,0.3-0.2,0.5-0.5,0.6H7.6c-0.4,0-0.5-0.3-0.4-1l2.6-16C9.9,6.3,10.2,5.9,11,5.9z"></path><path fill="#113984" d="M6.7,0h7.1c2,0,4.3,0.1,5.9,1.5c1.1,0.9,1.6,2.4,1.5,4c-0.4,5.4-3.7,8.5-8,8.5H9.6c-0.6,0-0.9,0.4-1.2,1.5
-  l-0.9,5.1C7.4,21,7.3,21.3,7,21.3H2.6C2,21.3,1.9,21,2,20.1L5.2,1.3C5.3,0.4,5.7,0,6.7,0z"></path><path fill="#172C70" d="M8.6,14.8l1.3-7.9c0.1-0.7,0.5-1,1.3-1h7.1c1.2,0,2.1,0.2,2.8,0.5c-0.7,4.8-3.8,7.5-7.9,7.5H9.6
-  C9.1,13.9,8.8,14.1,8.6,14.8z"></path></svg>
-</a>
-</li><li class="u-tab-item" role="presentation"><a class="u-active-grey-10 u-button-style u-payment-stripe u-tab-link u-text-body-color" id="link-tab-ab80" href="#tab-ab80" role="tab" aria-controls="tab-ab80" aria-selected="false"><input type="radio" class="u-field-input u-grey-15 u-radius-15" name="payment-group"><span>Stripe</span><svg class="u-svg-content" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 24 24"><path fill="#635BFF" d="M14,9.2c-2.3-0.8-3.4-1.5-3.4-2.4c0-0.8,0.8-1.3,2-1.3c2.3,0,4.7,0.8,6.4,1.6l0.9-5.5
-  c-1.3-0.5-4-1.6-7.7-1.6C9.6,0,7.5,0.7,5.8,1.9C4.1,3.2,3.4,4.9,3.4,7.2c0,4,2.6,5.7,6.8,7.2c2.7,0.9,3.6,1.6,3.6,2.5
-  c0,0.9-0.9,1.6-2.4,1.6c-1.9,0-5.2-0.9-7.3-2.1L3,22c1.8,0.9,5.1,2,8.7,2c2.8,0,5.1-0.7,6.6-1.9c1.8-1.3,2.7-3.2,2.7-5.7
-  C20.9,12.3,18.2,10.7,14,9.2L14,9.2z"></path></svg>
-</a>
-</li></ul>
-            <div class="u-tab-content">
-              <div class="u-container-style u-payment-paypal u-tab-active u-tab-pane" id="tab-9cb3" role="tabpanel" aria-labelledby="link-tab-9cb3">
-                <div class="u-container-layout u-payment-services-inner u-container-layout-3">Loading...</div>
-              </div>
-              <div class="u-container-style u-payment-stripe u-tab-pane" id="tab-ab80" role="tabpanel" aria-labelledby="link-tab-ab80">
-                <div class="u-container-layout u-container-layout-4">
-                  <a href="#" class="u-btn u-button-style u-stripe-button u-btn-1">Pay with Stripe</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button class="u-dialog-close-button u-icon u-text-grey-40 u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-efe9"></use></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-efe9"><rect x="7" y="0" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.3138 8.0002)" width="2" height="16"></rect><rect x="0" y="7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.3138 8.0002)" width="16" height="2"></rect></svg></button>
+        <p class="u-text u-text-1">© 2023 Tecnonel2.0 - Todos los derechos reservados</p>
       </div>
-    </section><style>.u-dialog-section-4 .u-dialog-1 {
-  width: 570px;
-  min-height: 578px;
-  height: auto;
-  box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.2);
-  margin: 60px auto;
-}
+    </footer>
 
-.u-dialog-section-4 .u-container-layout-1 {
-  padding: 34px 35px;
-}
+    <script>
+      // Función principal de búsqueda
+      document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const query = urlParams.get('search');
+        const resultsContainer = document.getElementById('search-results-grid');
+        const termDisplay = document.getElementById('search-term-display');
 
-.u-dialog-section-4 .u-text-1 {
-  font-weight: 700;
-  margin: 0 165px 0 0;
-}
+        // Imagen por defecto si el producto no tiene
+        const defaultImage = 'https://via.placeholder.com/300x300?text=Sin+Imagen';
 
-.u-dialog-section-4 .u-products-1 {
-  margin-top: 30px;
-  margin-bottom: 0;
-}
+        if (!query || query === 'null' || query.trim() === '') {
+          termDisplay.textContent = "Todo";
+          loadAllProducts(resultsContainer, defaultImage);
+          return;
+        }
 
-.u-dialog-section-4 .u-repeater-1 {
-  grid-template-columns: 100%;
-  min-height: 206px;
-  grid-gap: 10px;
-}
+        termDisplay.textContent = `"${query}"`;
+        searchProducts(query, resultsContainer, defaultImage);
+      });
 
-.u-dialog-section-4 .u-container-layout-2 {
-  padding: 0 0 30px;
-}
+      function loadAllProducts(container, defaultImg) {
+        fetch('../products.json')
+          .then(response => {
+            if (!response.ok) throw new Error('Error al cargar products.json');
+            return response.json();
+          })
+          .then(products => {
+            renderProducts(products, container, defaultImg);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            container.innerHTML = '<p class="no-results-msg">No se pudo cargar el catálogo. Intente más tarde.</p>';
+          });
+      }
 
-.u-dialog-section-4 .u-text-2 {
-  background-image: none;
-  margin: 0;
-}
+      function searchProducts(query, container, defaultImg) {
+        const lowerQuery = query.toLowerCase().trim();
 
-.u-dialog-section-4 .u-text-3 {
-  font-size: 0.875rem;
-  margin: 20px 0 0;
-}
+        fetch('../products.json')
+          .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+          })
+          .then(products => {
+            // Filtrado robusto
+            const filtered = products.filter(product => {
+              if (!product) return false; // Ignorar elementos nulos
+              
+              const title = (product.title || product.name || '').toLowerCase();
+              const desc = (product.description || '').toLowerCase();
+              const cat = (product.category || '').toLowerCase();
+              const id = String(product.id || '');
 
-.u-dialog-section-4 .u-product-quantity-1 {
-  width: 125px;
-  margin: 30px auto 0 0;
-}
+              return title.includes(lowerQuery) || 
+                     desc.includes(lowerQuery) || 
+                     cat.includes(lowerQuery) ||
+                     id.includes(lowerQuery);
+            });
 
-.u-dialog-section-4 .u-product-price-1 {
-  margin: -34px 0 0 auto;
-}
+            if (filtered.length === 0) {
+              container.innerHTML = `
+                <div class="no-results-msg">
+                  <p>No encontramos productos relacionados con "<strong>${query}</strong>".</p>
+                  <p>Intenta con otros términos como "audifonos", "camiseta" o "bluetooth".</p>
+                  <button onclick="window.location.href='../index.html'" class="u-search-btn" style="margin-top:15px;">Ver todo el catálogo</button>
+                </div>`;
+            } else {
+              renderProducts(filtered, container, defaultImg);
+            }
+          })
+          .catch(error => {
+            console.error('Error fetching products:', error);
+            container.innerHTML = '<p class="no-results-msg">Hubo un error al buscar. Por favor recarga la página.</p>';
+          });
+      }
 
-.u-dialog-section-4 .u-payment-services-1 {
-  min-height: 250px;
-  min-width: 50px;
-  margin: 0;
-}
+      function renderProducts(products, container, defaultImg) {
+        container.innerHTML = ''; // Limpiar loader
 
-.u-dialog-section-4 .u-container-layout-3 {
-  padding: 20px 0 0;
-}
+        products.forEach(product => {
+          // Validación estricta de datos para evitar productos rotos
+          if (!product.title && !product.name) return; 
 
-.u-dialog-section-4 .u-container-layout-4 {
-  padding: 20px 0 0;
-}
+          const title = product.title || product.name;
+          const price = product.price ? `$${parseFloat(product.price).toFixed(2)}` : 'Consultar';
+          // Usar imagen del producto o la default si es null/undefined/vacío
+          const imageSrc = (product.image && product.image.trim() !== '') ? product.image : defaultImg;
+          
+          // CORRECCIÓN DEL ENLACE 404:
+          // Asumimos que tu página de detalles es product-details.html y recibe el ID
+          // Si tu estructura es diferente, cambia esta línea.
+          const productLink = `../product-details.html?pid=${product.id}`;
 
-.u-dialog-section-4 .u-btn-1 {
-  width: 100%;
-  margin: 0 auto;
-}
-
-.u-dialog-section-4 .u-icon-1 {
-  width: 20px;
-  height: 20px;
-  left: auto;
-  top: 36px;
-  position: absolute;
-  right: 35px;
-  padding: 0;
-}
-
-@media (max-width: 1199px) {
-  .u-dialog-section-4 .u-text-1 {
-    margin-right: 165px;
-  }
-
-  .u-dialog-section-4 .u-payment-services-1 {
-    margin-right: initial;
-    margin-left: initial;
-  }
-}
-
-@media (max-width: 991px) {
-  .u-dialog-section-4 .u-container-layout-1 {
-    padding: 30px;
-  }
-
-  .u-dialog-section-4 .u-container-layout-3 {
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .u-dialog-section-4 .u-container-layout-4 {
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .u-dialog-section-4 .u-icon-1 {
-    top: 32px;
-    right: 30px;
-  }
-}
-
-@media (max-width: 767px) {
-  .u-dialog-section-4 .u-dialog-1 {
-    width: 540px;
-  }
-}
-
-@media (max-width: 575px) {
-  .u-dialog-section-4 .u-dialog-1 {
-    width: 340px;
-  }
-
-  .u-dialog-section-4 .u-container-layout-1 {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .u-dialog-section-4 .u-text-1 {
-    margin-right: 5px;
-  }
-
-  .u-dialog-section-4 .u-icon-1 {
-    right: 20px;
-  }
-}</style>
-</body></html>
+          const cardHTML = `
+            <div class="u-search-result-card u-product">
+              <a href="${productLink}" style="text-decoration: none; color: inherit;">
+                <div class="u-search-image-container">
+                  <img src="${imageSrc}" alt="${title}" onerror="this.src='${defaultImg}'">
+                </div>
+                <div class="u-search-body">
+                  <h5 class="u-search-title">${title}</h5>
+                  <p class="u-search-price">${price}</p>
+                  <span class="u-search-btn">Ver Producto</span>
+                </div>
+              </a>
+            </div>
+          `;
+          
+          container.insertAdjacentHTML('beforeend', cardHTML);
+        });
+      }
+    </script>
+  </body>
+</html>
