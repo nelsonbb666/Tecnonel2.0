@@ -105,9 +105,9 @@
       </div></header>
     <section class="u-clearfix u-section-1" id="block-2">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h2 id="search-results-title" class="u-align-center u-text u-text-1" style="display: none;">Resultados de Búsqueda</h2>
-        <p id="search-results-message" class="u-align-center u-text u-text-2" style="margin-top: 10px; color: #666; display: none;"></p>
-        <form action="#" class="u-border-1 u-border-grey-30 u-search u-search-left u-white u-search-1" id="search-form">
+        <h2 id="search-results-title" class="u-align-center u-text u-text-1" style="display: block;">Resultados de Búsqueda</h2>
+        <p id="search-results-message" class="u-align-center u-text u-text-2" style="margin-top: 10px; color: #666; display: block;"></p>
+        <form action="#" class="u-border-1 u-border-grey-30 u-search u-search-left u-white u-search-1" id="search-form" style="display: block;">
           <button class="u-search-button" type="submit"><span class="u-search-icon u-spacing-10">
               <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 56.966 56.966"><use xlink:href="#svg-6a57"></use></svg>
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg-6a57" x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve" class="u-svg-content"><path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"></path></svg></span>
@@ -133,20 +133,34 @@
         // Cargar productos desde JSON
         let allProducts = [];
         
+        console.log('Iniciando carga de productos...');
+        
         fetch('../products/products.json')
           .then(response => {
+            console.log('Respuesta recibida:', response.status);
             if (!response.ok) {
-              throw new Error('Error al cargar products.json');
+              throw new Error('Error al cargar products.json: ' + response.status);
             }
             return response.json();
           })
           .then(data => {
+            console.log('Datos recibidos:', data);
             allProducts = data.productos || data;
-            console.log('Productos cargados:', allProducts.length);
+            console.log('Productos cargados:', allProducts ? allProducts.length : 0);
+            
+            if (!allProducts || allProducts.length === 0) {
+              console.error('No se encontraron productos en el JSON');
+              resultsMessage.textContent = 'Error: No hay productos disponibles.';
+              resultsMessage.style.display = 'block';
+              resultsTitle.style.display = 'block';
+              return;
+            }
             
             // Obtener término de búsqueda de la URL
             const urlParams = new URLSearchParams(window.location.search);
             const searchTerm = urlParams.get('search');
+            
+            console.log('Término de búsqueda en URL:', searchTerm);
             
             // Solo buscar si hay un término válido (no null, no undefined, no vacío)
             if (searchTerm && searchTerm.trim() !== '' && searchTerm !== 'null') {
@@ -154,15 +168,15 @@
               performSearch(searchTerm);
             } else {
               // Si no hay término, mantener la página limpia (no mostrar nada)
+              console.log('No hay término de búsqueda válido');
               resultsTitle.style.display = 'none';
               resultsMessage.style.display = 'none';
-              searchForm.style.display = 'none';
               resultsContainer.innerHTML = '';
             }
           })
           .catch(error => {
             console.error('Error cargando productos:', error);
-            resultsMessage.textContent = 'Error cargando productos. Por favor recarga la página.';
+            resultsMessage.textContent = 'Error cargando productos: ' + error.message + '. Por favor recarga la página.';
             resultsMessage.style.display = 'block';
             resultsTitle.style.display = 'block';
           });
@@ -183,6 +197,8 @@
         
         // Función para realizar la búsqueda
         function performSearch(term) {
+          console.log('performSearch llamado con término:', term);
+          
           if (!allProducts || allProducts.length === 0) {
             console.error('No hay productos cargados');
             resultsMessage.textContent = 'Error: No se han cargado los productos. Recarga la página.';
@@ -192,6 +208,7 @@
           }
           
           const searchTermLower = term.toLowerCase().trim();
+          console.log('Término de búsqueda normalizado:', searchTermLower);
           
           // Filtrar productos por título, descripción, categoría e ID
           const filteredProducts = allProducts.filter(product => {
@@ -200,10 +217,16 @@
             const categoria = (product.categoria || '').toLowerCase();
             const id = (product.id || '').toLowerCase();
             
-            return titulo.includes(searchTermLower) ||
+            const match = titulo.includes(searchTermLower) ||
                    descripcion.includes(searchTermLower) ||
                    categoria.includes(searchTermLower) ||
                    id.includes(searchTermLower);
+            
+            if (match) {
+              console.log('Producto encontrado:', product.titulo);
+            }
+            
+            return match;
           });
           
           console.log('Término buscado:', term);
@@ -215,6 +238,7 @@
         
         // Función para mostrar resultados
         function displayResults(products, searchTerm) {
+          console.log('displayResults llamado con:', products.length, 'productos');
           resultsContainer.innerHTML = '';
           
           // Validar que el término de búsqueda no sea null o vacío
@@ -239,6 +263,7 @@
           }
           
           if (products.length === 0 && hasValidSearchTerm) {
+            console.log('No se encontraron productos para:', searchTerm);
             resultsContainer.innerHTML = `
               <div style="grid-column: 1 / -1; text-align: center; padding: 50px 20px;">
                 <svg style="width: 80px; height: 80px; color: #ccc; margin-bottom: 20px;" fill="currentColor" viewBox="0 0 20 20">
@@ -252,11 +277,15 @@
           }
           
           if (products.length === 0 || !hasValidSearchTerm) {
+            console.log('Sin productos o sin término válido, retornando');
             return;
           }
           
+          console.log('Creando tarjetas para', products.length, 'productos');
+          
           // Crear tarjeta para cada producto
-          products.forEach(product => {
+          products.forEach((product, index) => {
+            console.log('Producto', index + 1, ':', product.titulo);
             // Calcular descuento solo si precioOriginal existe y es mayor que precio
             let discount = 0;
             if (product.precioOriginal && product.precio && product.precioOriginal > product.precio) {
@@ -265,6 +294,8 @@
             const productCard = createProductCard(product, discount);
             resultsContainer.appendChild(productCard);
           });
+          
+          console.log('Tarjetas creadas y agregadas al contenedor');
         }
         
         // Función para crear tarjeta de producto
