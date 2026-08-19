@@ -133,6 +133,54 @@
     <script>
       let allProducts = [];
 
+      // Función para normalizar texto (quitar acentos y convertir a minúsculas)
+      function normalizeText(text) {
+        if (!text) return '';
+        return text
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .trim();
+      }
+
+      // Función para calcular relevancia de un producto
+      function calculateRelevance(product, query) {
+        const normalizedQuery = normalizeText(query);
+        if (!normalizedQuery) return 0;
+
+        const title = normalizeText(product.titulo || '');
+        const desc = normalizeText(product.descripcion || '');
+        const cat = normalizeText(product.categoria || '');
+        const marca = normalizeText(product.marca || '');
+        const sku = normalizeText(product.sku || '');
+        const tags = normalizeText((product.etiquetas || []).join(' '));
+        const idStr = normalizeText(String(product.id || ''));
+
+        let score = 0;
+
+        // Coincidencia exacta en título (máxima prioridad)
+        if (title === normalizedQuery) score += 100;
+        // Título contiene la búsqueda
+        else if (title.includes(normalizedQuery)) score += 50;
+        
+        // Coincidencia en marca
+        if (marca.includes(normalizedQuery)) score += 30;
+        
+        // Coincidencia en categoría
+        if (cat.includes(normalizedQuery)) score += 25;
+        
+        // Coincidencia en SKU
+        if (idStr.includes(normalizedQuery) || sku.includes(normalizedQuery)) score += 20;
+        
+        // Coincidencia en etiquetas
+        if (tags.includes(normalizedQuery)) score += 15;
+        
+        // Coincidencia en descripción (menor prioridad)
+        if (desc.includes(normalizedQuery)) score += 10;
+
+        return score;
+      }
+
       // Función principal de inicialización
       document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('search-input');
@@ -162,35 +210,43 @@
             handleSearch();
           });
 
-        // Manejar envío del formulario
+        // Manejar envío del formulario - REDIRIGIR a la misma página con parámetro
         searchForm.addEventListener('submit', function(e) {
           e.preventDefault();
-          handleSearch();
+          const query = searchInput.value.trim();
+          if (query) {
+            // Redirigir a la misma página con el parámetro search
+            window.location.href = `search.html?search=${encodeURIComponent(query)}`;
+          } else {
+            // Si no hay query, mostrar todos
+            window.location.href = 'search.html';
+          }
         });
 
         function handleSearch() {
-          // Obtener término de la URL o del input
+          // Obtener término de la URL
           const urlParams = new URLSearchParams(window.location.search);
-          let query = urlParams.get('search') || searchInput.value;
+          let query = urlParams.get('search') || '';
           
           // Limpiar y normalizar
-          query = (query || '').trim().toLowerCase();
+          query = (query || '').trim();
           searchInput.value = query;
           
           // Actualizar texto de encabezado
           termDisplay.textContent = query ? `Resultados para: "${query}"` : "Todos los productos";
 
-          // Filtrar productos
-          const filtered = allProducts.filter(product => {
-            if (!query) return true;
-            
-            const title = (product.titulo || '').toLowerCase();
-            const desc = (product.descripcion || '').toLowerCase();
-            const cat = (product.categoria || '').toLowerCase();
-            const idStr = String(product.id || '');
-
-            return title.includes(query) || desc.includes(query) || cat.includes(query) || idStr.includes(query);
-          });
+          // Filtrar y ordenar productos por relevancia
+          let filtered = allProducts
+            .map(product => ({
+              product,
+              relevance: calculateRelevance(product, query)
+            }))
+            .filter(item => {
+              if (!query.trim()) return true;
+              return item.relevance > 0;
+            })
+            .sort((a, b) => b.relevance - a.relevance)
+            .map(item => item.product);
 
           renderResults(filtered, query);
         }
@@ -217,7 +273,7 @@
             
             card.innerHTML = `
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
-                <img alt="${product.titulo}" class="u-expanded-width u-image u-image-default u-image-1" src="${imgSrc}" onerror="this.src='../images/default-product.jpg'">
+                <img alt="${product.titulo || 'Producto'}" class="u-expanded-width u-image u-image-default u-image-1" src="${imgSrc}" onerror="this.src='../images/default-product.jpg'">
                 <h4 class="u-text u-text-default u-text-1">${product.titulo || 'Sin título'}</h4>
                 <p class="u-text u-text-2">${(product.descripcion || 'Sin descripción').substring(0, 100)}${(product.descripcion || '').length > 100 ? '...' : ''}</p>
                 <h5 class="u-text u-text-palette-1-base u-text-3" style="font-weight: 700;">${priceFormatted}</h5>
