@@ -176,15 +176,23 @@
         
         // Función para realizar la búsqueda
         function performSearch(term) {
-          const searchTermLower = term.toLowerCase();
+          const searchTermLower = term.toLowerCase().trim();
           
-          // Filtrar productos
+          // Filtrar productos por título y descripción (con validación de propiedades)
           const filteredProducts = allProducts.filter(product => {
-            return product.titulo.toLowerCase().includes(searchTermLower) ||
-                   product.descripcion.toLowerCase().includes(searchTermLower) ||
-                   product.categoria.toLowerCase().includes(searchTermLower) ||
-                   product.id.toLowerCase().includes(searchTermLower);
+            const titulo = (product.titulo || '').toLowerCase();
+            const descripcion = (product.descripcion || '').toLowerCase();
+            const categoria = (product.categoria || '').toLowerCase();
+            const id = (product.id || '').toLowerCase();
+            
+            return titulo.includes(searchTermLower) ||
+                   descripcion.includes(searchTermLower) ||
+                   categoria.includes(searchTermLower) ||
+                   id.includes(searchTermLower);
           });
+          
+          console.log('Término buscado:', term);
+          console.log('Productos encontrados:', filteredProducts.length);
           
           // Mostrar resultados
           displayResults(filteredProducts, term);
