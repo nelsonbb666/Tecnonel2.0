@@ -142,15 +142,15 @@
         const urlParams = new URLSearchParams(window.location.search);
         const searchTerm = urlParams.get('search');
         
-        // Solo buscar si hay un término válido
-        if (searchTerm && searchTerm.trim() !== '') {
+        // Solo buscar si hay un término válido (no null, no undefined, no vacío)
+        if (searchTerm && searchTerm.trim() !== '' && searchTerm !== 'null') {
           searchInput.value = searchTerm;
           performSearch(searchTerm);
         } else {
           // Si no hay término, mantener la página limpia (no mostrar nada)
           resultsTitle.style.display = 'none';
           resultsMessage.style.display = 'none';
-          searchInput.style.display = 'none';
+          searchForm.style.display = 'none';
           resultsContainer.innerHTML = '';
         }
           })
@@ -195,12 +195,13 @@
           resultsContainer.innerHTML = '';
           
           // Validar que el término de búsqueda no sea null o vacío
-          const hasValidSearchTerm = searchTerm && searchTerm.trim() !== '';
+          const hasValidSearchTerm = searchTerm && searchTerm.trim() !== '' && searchTerm !== 'null';
           
           if (hasValidSearchTerm) {
             resultsTitle.textContent = `Resultados de Búsqueda: "${searchTerm}"`;
             resultsTitle.style.display = 'block';
-            
+            searchForm.style.display = 'block';
+                        
             if (products.length > 0) {
               resultsMessage.textContent = `${products.length} producto(s) encontrado(s)`;
             } else {
@@ -211,7 +212,7 @@
             // Si no hay término válido, mantener todo oculto
             resultsTitle.style.display = 'none';
             resultsMessage.style.display = 'none';
-            searchInput.style.display = 'none';
+            searchForm.style.display = 'none';
           }
           
           if (products.length === 0 && hasValidSearchTerm) {
