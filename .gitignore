@@ -13,6 +13,12 @@ __pycache__/
 *.out
 
 # Dependencies
+node_modules/
+venv/
+.venv/
+.env
+.env.local
+.env.*
 .venv/
 venv/
 node_modules/
@@ -28,6 +34,9 @@ htmlcov/
 *.swp
 *.swo
 
+# Editors
+.vscode/
+.idea/
 # Environment
 .env
 .env.local
@@ -43,11 +52,20 @@ htmlcov/
 .DS_Store
 Thumbs.db
 
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
 # Build directories
 dist/
 build/
 target/
 .gradle/
+
+# Python cache
+.mypy_cache/
+.pytest_cache/
 
 # Compressed files
 *.zip
@@ -71,5 +89,6 @@ target/
 *.tar.gz
 *.tar.bz2
 *.tar.xz
+*.tar.zst
 *.tar.zst
 ```
