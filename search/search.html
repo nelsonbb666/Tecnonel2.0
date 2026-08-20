@@ -3,292 +3,326 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
+    <meta name="keywords" content="Resultados de Búsqueda, Tecnonel">
+    <meta name="description" content="Resultados de búsqueda en Tecnonel">
     <title>Resultados de Búsqueda</title>
-    <!-- Asegúrate de que estos links coincidan con los de tu index.html -->
     <link rel="stylesheet" href="../nicepage.css" media="screen">
-    <link rel="stylesheet" href="../search.css" media="screen">
+    <link rel="stylesheet" href="../Tecnonel/Promociones.css" media="screen">
     <script class="u-script" type="text/javascript" src="../jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="../nicepage.js" defer=""></script>
-    
     <style>
-      /* Estilos específicos para corregir la cuadrícula de búsqueda */
-      .search-results-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center; /* Centra los productos si hay pocos */
-        gap: 20px;
-        padding: 40px 20px;
-        min-height: 50vh;
+      /* Estilos específicos para la cuadrícula de resultados */
+      .results-section {
+        padding: 60px 0;
+        background-color: #ffffff;
       }
-
-      .u-search-result-card {
-        flex: 0 0 auto;
-        width: 250px; /* Ancho fijo para uniformidad */
-        margin-bottom: 20px;
-        transition: transform 0.2s;
+      .results-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
       }
-      
-      .u-search-result-card:hover {
+      .product-card-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        transition: transform 0.3s ease;
+      }
+      .product-card-link:hover {
         transform: translateY(-5px);
       }
-
-      /* Forzar imagen cuadrada y uniforme */
-      .u-search-image-container {
+      .product-image-container {
         width: 100%;
-        height: 250px; 
+        height: 250px;
         overflow: hidden;
-        position: relative;
-        background-color: #f5f5f5;
+        background: #f5f5f5;
+        border-radius: 8px;
+        margin-bottom: 15px;
       }
-
-      .u-search-image-container img {
+      .product-image {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Recorta la imagen para llenar el espacio sin deformarse */
-        position: absolute;
-        top: 0;
-        left: 0;
+        object-fit: cover;
       }
-
-      .u-search-body {
-        padding: 15px;
-        text-align: center;
-        border: 1px solid #eee;
-        border-top: none;
-        background: white;
-      }
-
-      .u-search-title {
+      .product-title {
         font-size: 1.1rem;
         font-weight: bold;
         margin-bottom: 10px;
-        color: #111;
-        /* Limitar a 2 líneas */
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        height: 3em; 
-      }
-
-      .u-search-price {
-        font-size: 1.2rem;
         color: #333;
+        line-height: 1.4;
+      }
+      .product-price {
+        font-size: 1.25rem;
         font-weight: bold;
+        color: #e74c3c;
+        margin-bottom: 5px;
+      }
+      .product-category {
+        font-size: 0.9rem;
+        color: #777;
+        text-transform: uppercase;
+      }
+      .no-results-message {
+        text-align: center;
+        padding: 60px 20px;
+        grid-column: 1 / -1;
+      }
+      .no-results-message h3 {
+        font-size: 1.5rem;
+        color: #333;
         margin-bottom: 15px;
       }
-
-      .u-search-btn {
-        display: inline-block;
-        padding: 8px 20px;
-        background-color: #111; /* Color de tu tema */
-        color: white;
-        text-decoration: none;
-        border-radius: 20px;
-        font-size: 0.9rem;
-        transition: background 0.3s;
-      }
-
-      .u-search-btn:hover {
-        background-color: #444;
-        color: white;
-      }
-
-      .no-results-msg {
-        width: 100%;
-        text-align: center;
-        padding: 50px;
-        font-size: 1.5rem;
+      .no-results-message p {
         color: #666;
+        margin-bottom: 30px;
       }
-      
-      /* Ocultar el footer temporalmente si interfiere, pero normalmente se deja */
-      .u-search-loading {
+      .search-term-highlight {
+        color: #e74c3c;
+        font-weight: bold;
+      }
+      /* Loading Spinner */
+      .loading-spinner {
         text-align: center;
-        width: 100%;
-        padding: 20px;
-        font-style: italic;
-        color: #888;
+        padding: 60px;
+        grid-column: 1 / -1;
+      }
+      .spinner {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #e74c3c;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 20px;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
       }
     </style>
   </head>
   <body class="u-body u-xl-mode" data-lang="es">
     
-    <!-- EL ENCABEZADO SE MANTIENE IGUAL QUE EN EL INDEX -->
-    <!-- Copia exactamente el header de tu index.html aquí para garantizar consistencia -->
-    <header class="u-clearfix u-header u-header" id="sec-6d1a">
-      <div class="u-clearfix u-sheet u-sheet-1">
-        <!-- Logo -->
-        <a href="../index.html" class="u-image u-logo u-image-1" data-image-width="512" data-image-height="512">
-          <img src="../images/logo.png" class="u-logo-image u-logo-image-1" alt="Logo">
+    <!-- Encabezado Superior (IDÉNTICO AL INDEX) -->
+    <div class="background u-clearfix u-gradient u-section-row u-section-row-2" id="sec-37e8">
+      <div class="u-clearfix u-sheet u-valign-top-xs u-sheet-2">
+        <a href="../" class="u-image u-logo u-image-1" data-image-width="500" data-image-height="500">
+          <img src="../images/logo.png" class="u-logo-image u-logo-image-1" data-image-width="80">
         </a>
-        
-        <!-- Menú de Navegación -->
-        <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
-          <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700;">
-            <a class="u-button-style u-custom-active-border-color u-custom-border u-custom-border-color u-custom-borders u-custom-hover-border-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
-              <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+        <nav data-position="" class="u-menu u-menu-one-level u-offcanvas u-menu-1 animated u-enable-responsive customAnimationIn" role="navigation" data-responsive-from="MD" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="" style="will-change: transform, opacity; animation-duration: 1000ms;">
+          <div class="menu-collapse u-custom-font" style="font-size: 1.875rem; letter-spacing: 0px; font-family: Bangers; font-weight: 700; text-transform: uppercase;">
+            <a class="u-button-style u-custom---text-color-var u-custom---text-hover-color-var u-custom-active-border-color u-custom-border u-custom-border-color u-custom-borders u-custom-color u-custom-effect-duration u-custom-hover-border-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-text-hover-color u-custom-text-shadow u-custom-text-shadow-blur u-custom-text-shadow-color u-custom-text-shadow-transparency u-custom-text-shadow-x u-custom-text-shadow-y u-custom-top-bottom-menu-spacing u-hamburger-link u-nav-link u-hamburger-link-1" href="#" tabindex="-1" aria-label="Open menu" aria-controls="8091">
+              <svg class="u-svg-link" viewBox="0 0 24 24"><use xlink:href="#menu-hamburger"></use></svg>
               <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect></g></svg>
             </a>
           </div>
-          <div class="u-nav-container">
-            <ul class="u-nav u-unstyled u-nav-1">
-              <li class="u-nav-item"><a class="u-nav-link" href="../index.html">Inicio</a></li>
-              <li class="u-nav-item"><a class="u-nav-link" href="../categories.html">Categorías</a></li>
-              <li class="u-nav-item"><a class="u-nav-link" href="../about.html">Nosotros</a></li>
-              <li class="u-nav-item"><a class="u-nav-link" href="../contact.html">Contacto</a></li>
+          <div class="u-custom-menu u-nav-container">
+            <ul role="menubar" class="u-custom-font u-nav u-unstyled u-nav-1">
+              <li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link u-text-color-var u-text-hover-color-var u-nav-link-2" href="../">Inicio</a></li>
+              <li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link u-text-color-var u-text-hover-color-var u-nav-link-2" href="../Tecnonel/Categorias.html">Categorias</a></li>
+              <li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link u-text-color-var u-text-hover-color-var u-nav-link-2" href="../Tecnonel/Promociones.html">Promociones</a></li>
+              <li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link u-text-color-var u-text-hover-color-var u-nav-link-2" href="../Tecnonel/Popular.html">Popular</a></li>
+              <li role="none" class="u-nav-item"><a tabindex="-1" role="menuitem" class="u-button-style u-nav-link u-text-color-var u-text-hover-color-var u-nav-link-2" href="../Tecnonel/ayuda.html">Ayuda</a></li>
             </ul>
           </div>
-          <!-- Carrito Icono (Simulado, ajusta el link a tu página de carrito) -->
-          <div class="u-cart-wrapper" style="position: absolute; right: 20px; top: 15px;">
-             <a href="../cart.html" class="u-icon u-icon-circle u-palette-1-base u-icon-1">
-               <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 512 512"><use xlink:href="#svg-cart"></use></svg>
-               <svg class="u-svg-content" viewBox="0 0 512 512" id="svg-cart"><path d="M128.6,128.6l14.9,178.8c1.3,15.6,14.4,27.6,30.1,27.6h164.9c15.7,0,28.8-12,30.1-27.6l14.9-178.8H128.6z M256,448 c-26.5,0-48-21.5-48-48h96C304,426.5,282.5,448,256,448z M469.4,96.3c-5.4-6.5-13.5-10.3-22.1-10.3H104.7l-8.6-41.4 C93.7,32.8,83.5,24,71.4,24H32C14.3,24,0,38.3,0,56s14.3,32,32,32h26.3l42.9,205.6c4.9,23.6,25.7,40.4,49.7,40.4h210.3 c24,0,44.8-16.8,49.7-40.4l12.6-60.4h44.5c17.7,0,32-14.3,32-32S487.1,169.2,469.4,169.2h-31.1L469.4,96.3z"></path></svg>
-             </a>
+          <div class="u-custom-menu u-nav-container-collapse" id="8091" role="region" aria-label="Menu panel">
+            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+              <div class="u-inner-container-layout u-sidenav-overflow">
+                <div class="u-menu-close" tabindex="-1" aria-label="Close menu"></div>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2" role="menubar">
+                  <li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link" href="../">Inicio</a></li>
+                  <li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link" href="../Tecnonel/Categorias.html">Categorias</a></li>
+                  <li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link" href="../Tecnonel/Promociones.html">Promociones</a></li>
+                  <li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link" href="../Tecnonel/Popular.html">Popular</a></li>
+                  <li role="none" class="u-nav-item"><a tabindex="-1" role="menuitem" class="u-button-style u-nav-link" href="../Tecnonel/ayuda.html">Ayuda</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
+          <style class="menu-style">@media (max-width: 939px) {
+                [data-responsive-from="MD"] .u-nav-container {
+                    display: none;
+                }
+                [data-responsive-from="MD"] .menu-collapse {
+                    display: block;
+                }
+            }</style>
         </nav>
+        <a class="u-shopping-cart u-shopping-cart-1" data-payment-service="{&quot;id&quot;:&quot;83669fffecb10100a102e15a981aedd1&quot;,&quot;formServices&quot;:[&quot;0a06829d-6df8-ec0e-18bf-ee273cd3966d&quot;],&quot;paymentMethods&quot;:[],&quot;userToken&quot;:&quot;512f8e55-8be9-47c2-9469-998d9cdf838c&quot;}" href="#popup-c728">
+          <span class="u-icon u-icon-rounded u-palette-1-base u-shopping-cart-icon u-text-white u-icon-1">
+            <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" style=""><use xlink:href="#svg-67cf"></use></svg>
+            <svg class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-67cf"><path d="M14.5,3l-2.1,5H6.1L5.9,7.6L4,3H14.5 M0,0v1h2.1L5,8l-2,4h11v-1H4.6l1-2H13l3-7H3.6L2.8,0H0z M12.5,13 c-0.8,0-1.5,0.7-1.5,1.5s0.7,1.5,1.5,1.5s1.5-0.7,1.5-1.5S13.3,13,12.5,13L12.5,13z M4.5,13C3.7,13,3,13.7,3,14.5S3.7,16,4.5,16 S6,15.3,6,14.5S5.3,13,4.5,13L4.5,13z"></path></svg>
+            <span class="u-icon-circle u-palette-1-base u-shopping-cart-count" style="font-size: 0.75rem;">0</span>
+          </span>
+        </a>
       </div>
-    </header>
+    </div>
 
     <!-- Sección de Resultados de Búsqueda -->
-    <section class="u-clearfix u-section-1" id="search-section">
+    <section class="u-clearfix u-section-1 results-section" id="sec-results">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h2 class="u-text u-text-default u-title u-text-1" style="margin-top: 30px;">Resultados de: <span id="search-term-display"></span></h2>
+        <h2 class="u-text u-text-default u-text-1">Resultados para: <span id="search-query-display" class="search-term-highlight">...</span></h2>
         
-        <!-- Contenedor donde se inyectarán los productos ordenados -->
-        <div id="search-results-grid" class="search-results-container">
-          <div class="u-search-loading">Cargando productos...</div>
+        <!-- Contenedor dinámico de resultados -->
+        <div id="results-grid" class="results-container">
+          <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Cargando productos...</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Footer (Mismo que en las demás páginas) -->
-    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-9c6b">
+    <!-- Pie de Página -->
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-8d2f">
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-social-icons u-spacing-10 u-social-icons-1">
-          <a class="u-social-url" target="_blank" href="https://facebook.com" title="Facebook"><span class="u-icon u-social-facebook u-social-icon u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112"><use xlink:href="#svg-fb"></use></svg><svg class="u-svg-content" viewBox="0 0 112 112" x="0" y="0" id="svg-fb"><path fill="currentColor" d="M75.5,28.8H65.4c-1.5,0-4,0.9-4,4.3v9.4h13.9l-1.5,15.8H61.4v45.1H42.8V58.3h-8.8V42.4h8.8V32.2 c0-8.7,3.9-16.8,19.5-16.8h14V28.8z"></path></svg></span>
+          <a class="u-social-url" target="_blank" data-type="Facebook" title="Facebook" href="https://facebook.com/name">
+            <span class="u-icon u-social-facebook u-social-icon u-icon-1">
+              <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-8d2f"></use></svg>
+              <svg class="u-svg-content" viewBox="0 0 112 112" x="0" y="0" id="svg-8d2f"><circle fill="currentColor" cx="56.1" cy="56.1" r="55"></circle><path fill="#FFFFFF" d="M73.5,31.6h-9.1c-1.4,0-3.6,0.8-3.6,3.9v8.5h12.6L72,58.3H60.8v40.8H43.9V58.3h-8V43.9h8v-9.2 c0-6.7,3.1-12.5,13.4-12.5c4,0,7.9,0.7,7.9,0.7v8.8h-4.5c-4.5,0-5.2,2.1-5.2,5.7v9.1h10.3L63.8,58.3H73.5z"></path></svg>
+            </span>
           </a>
-          <a class="u-social-url" target="_blank" href="https://instagram.com" title="Instagram"><span class="u-icon u-social-icon u-social-instagram u-icon-2"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112"><use xlink:href="#svg-insta"></use></svg><svg class="u-svg-content" viewBox="0 0 112 112" x="0" y="0" id="svg-insta"><circle fill="currentColor" cx="56.1" cy="56.1" r="55"></circle><path fill="#FFFFFF" d="M55.9,38.2c-9.9,0-17.9,8-17.9,17.9c0,9.9,8,17.9,17.9,17.9c9.9,0,17.9-8,17.9-17.9C73.8,46.2,65.8,38.2,55.9,38.2z M55.9,66.4c-5.7,0-10.3-4.6-10.3-10.3c0-5.7,4.6-10.3,10.3-10.3c5.7,0,10.3,4.6,10.3,10.3C66.2,61.8,61.6,66.4,55.9,66.4z"></path><path fill="#FFFFFF" d="M74.3,33.5c-2.3,0-4.2,1.9-4.2,4.2s1.9,4.2,4.2,4.2s4.2-1.9,4.2-4.2S76.6,33.5,74.3,33.5z"></path><path fill="#FFFFFF" d="M73.1,21.3H38.6c-9.7,0-17.5,7.9-17.5,17.5v34.5c0,9.7,7.9,17.6,17.5,17.6h34.5c9.7,0,17.5-7.9,17.5-17.5V38.8 C90.6,29.1,82.7,21.3,73.1,21.3z M85.6,73.3c0,6.9-5.6,12.5-12.5,12.5H38.6c-6.9,0-12.5-5.6-12.5-12.5V38.8 c0-6.9,5.6-12.5,12.5-12.5h34.5c6.9,0,12.5,5.6,12.5,12.5V73.3z"></path></svg></span>
+          <a class="u-social-url" target="_blank" data-type="Twitter" title="Twitter" href="https://twitter.com/name">
+            <span class="u-icon u-social-icon u-social-twitter u-icon-2">
+              <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9d2f"></use></svg>
+              <svg class="u-svg-content" viewBox="0 0 112 112" x="0" y="0" id="svg-9d2f"><circle fill="currentColor" class="st0" cx="56.1" cy="56.1" r="55"></circle><path fill="#FFFFFF" d="M83.8,47.3c0,0.6,0,1.2,0,1.7c0,17.7-13.5,38.2-38.2,38.2C38,87.2,31,85,25,81.2c1,0.1,2.1,0.2,3.2,0.2 c6.3,0,12.1-2.1,16.7-5.7c-5.9-0.1-10.8-4-12.5-9.3c0.8,0.2,1.7,0.2,2.5,0.2c1.2,0,2.4-0.2,3.5-0.5c-6.1-1.2-10.8-6.7-10.8-13.1 v-0.2c1.8,1,3.9,1.6,6.1,1.7C27.3,49.9,23.3,44.5,23.3,38c0-2.9,0.8-5.6,2.2-7.9c6.6,8.1,16.5,13.5,27.6,14 c-0.2-1-0.3-2-0.3-3.1c0-7.4,6-13.4,13.4-13.4c3.9,0,7.3,1.6,9.8,4.2c3.1-0.6,5.9-1.7,8.5-3.3c-1,3.1-3.1,5.7-5.9,7.4 c2.7-0.3,5.3-1,7.7-2.1C85.3,36.9,83.8,42.1,83.8,47.3z"></path></svg>
+            </span>
           </a>
-          <a class="u-social-url" target="_blank" href="https://twitter.com" title="Twitter"><span class="u-icon u-social-icon u-social-twitter u-icon-3"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112"><use xlink:href="#svg-tw"></use></svg><svg class="u-svg-content" viewBox="0 0 112 112" x="0" y="0" id="svg-tw"><circle fill="currentColor" cx="56.1" cy="56.1" r="55"></circle><path fill="#FFFFFF" d="M83.8,47.3c0,0.6,0,1.2,0,1.7c0,17.7-13.5,38.2-38.2,38.2C38,87.2,31,85,25,81.2c1,0.1,2.1,0.2,3.2,0.2 c6.3,0,12.1-2.1,16.7-5.7c-5.9-0.1-10.8-4-12.5-9.3c0.8,0.2,1.7,0.2,2.5,0.2c1.2,0,2.4-0.2,3.5-0.5c-6.1-1.2-10.8-6.7-10.8-13.1 v-0.2c1.8,1,3.9,1.6,6.1,1.7C27.3,51,22,45.4,22,38.6c0-1.8,0.2-3.5,0.7-5.1c6.6,8.1,16.5,13.5,27.6,14c-0.2-1-0.4-2-0.4-3.1 c0-7.4,6.1-13.5,13.5-13.5c3.9,0,7.3,1.6,9.8,4.2c3.1-0.6,5.9-1.7,8.5-3.3c-1,3.1-3.1,5.8-5.9,7.4c2.7-0.3,5.3-1,7.7-2.1 C81.7,40.9,79.8,44.3,83.8,47.3z"></path></svg></span>
+          <a class="u-social-url" target="_blank" data-type="Instagram" title="Instagram" href="https://instagram.com/name">
+            <span class="u-icon u-social-icon u-social-instagram u-icon-3">
+              <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-ad2f"></use></svg>
+              <svg class="u-svg-content" viewBox="0 0 112 112" x="0" y="0" id="svg-ad2f"><circle fill="currentColor" cx="56.1" cy="56.1" r="55"></circle><path fill="#FFFFFF" d="M55.9,38.2c-9.9,0-17.9,8-17.9,17.9C38,66,46,74,55.9,74c9.9,0,17.9-8,17.9-17.9C73.8,46.2,65.8,38.2,55.9,38.2 z M55.9,66.4c-5.7,0-10.3-4.6-10.3-10.3c-0.1-5.7,4.6-10.3,10.3-10.3c5.7,0,10.3,4.6,10.3,10.3C66.2,61.8,61.6,66.4,55.9,66.4z"></path><path fill="#FFFFFF" d="M74.3,33.5c-2.3,0-4.2,1.9-4.2,4.2s1.9,4.2,4.2,4.2s4.2-1.9,4.2-4.2S76.6,33.5,74.3,33.5z"></path><path fill="#FFFFFF" d="M73.1,21.3H38.6c-9.7,0-17.5,7.9-17.5,17.5v34.5c0,9.7,7.9,17.6,17.5,17.6h34.5c9.7,0,17.5-7.9,17.5-17.5V38.8 C90.6,29.1,82.7,21.3,73.1,21.3z M83,73.3c0,5.5-4.5,9.9-9.9,9.9H38.6c-5.5,0-9.9-4.5-9.9-9.9V38.8c0-5.5,4.5-9.9,9.9-9.9h34.5 c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg>
+            </span>
           </a>
         </div>
-        <p class="u-text u-text-1">© 2023 Tecnonel2.0 - Todos los derechos reservados</p>
+        <p class="u-text u-text-1">© 2023 Tecnonel. Todos los derechos reservados.</p>
       </div>
     </footer>
 
+    <!-- LÓGICA DE BÚSQUEDA INTELIGENTE -->
     <script>
-      // Función principal de búsqueda
-      document.addEventListener('DOMContentLoaded', function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const query = urlParams.get('search');
-        const resultsContainer = document.getElementById('search-results-grid');
-        const termDisplay = document.getElementById('search-term-display');
+      // 1. Normalización de texto (Quita acentos, emojis, minúsculas)
+      function normalizeText(text) {
+        if (!text) return '';
+        return text.toString()
+          .toLowerCase()
+          .normalize('NFD') // Separa caracteres base de acentos
+          .replace(/[\u0300-\u036f]/g, '') // Elimina acentos
+          .replace(/[^\w\s]/gi, '') // Elimina símbolos y emojis (dejando letras y números)
+          .trim();
+      }
 
-        // Imagen por defecto si el producto no tiene
-        const defaultImage = 'https://via.placeholder.com/300x300?text=Sin+Imagen';
+      // 2. Cálculo de Relevancia
+      function calculateRelevance(product, query) {
+        let score = 0;
+        const q = normalizeText(query);
+        
+        const title = normalizeText(product.titulo || '');
+        const desc = normalizeText(product.descripcion || '');
+        const cat = normalizeText(product.categoria || '');
+        const id = normalizeText(product.id || '');
+        
+        // Coincidencia exacta en título (Máxima prioridad)
+        if (title === q) score += 100;
+        // Título contiene la palabra
+        else if (title.includes(q)) score += 50;
+        
+        // Categoría coincide
+        if (cat.includes(q)) score += 30;
+        
+        // ID coincide (útil para códigos como "P47")
+        if (id.includes(q)) score += 20;
+        
+        // Descripción contiene la palabra (Menor prioridad)
+        if (desc.includes(q)) score += 10;
 
-        if (!query || query === 'null' || query.trim() === '') {
-          termDisplay.textContent = "Todo";
-          loadAllProducts(resultsContainer, defaultImage);
+        return score;
+      }
+
+      // 3. Renderizado de Tarjetas
+      function renderProducts(products, container) {
+        container.innerHTML = '';
+        
+        if (products.length === 0) {
+          container.innerHTML = `
+            <div class="no-results-message">
+              <h3>No encontramos productos relacionados</h3>
+              <p>Intenta con otros términos como "audifonos", "camiseta", "tecnologia", etc.</p>
+              <a href="../" class="u-btn u-button-style u-palette-1-base">Volver al Inicio</a>
+            </div>
+          `;
           return;
         }
 
-        termDisplay.textContent = `"${query}"`;
-        searchProducts(query, resultsContainer, defaultImage);
-      });
+        products.forEach(prod => {
+          const imgUrl = prod.imagenes && prod.imagenes.length > 0 
+            ? prod.imagenes[0] 
+            : '../images/default-product.jpg'; // Imagen por defecto si falla
+            
+          const priceFormatted = new Intl.NumberFormat('es-CO', {
+            style: 'currency',
+            currency: 'COP',
+            minimumFractionDigits: 0
+          }).format(prod.precio || 0);
 
-      function loadAllProducts(container, defaultImg) {
-        fetch('../products.json')
-          .then(response => {
-            if (!response.ok) throw new Error('Error al cargar products.json');
-            return response.json();
-          })
-          .then(products => {
-            renderProducts(products, container, defaultImg);
-          })
-          .catch(error => {
-            console.error('Error:', error);
-            container.innerHTML = '<p class="no-results-msg">No se pudo cargar el catálogo. Intente más tarde.</p>';
-          });
-      }
-
-      function searchProducts(query, container, defaultImg) {
-        const lowerQuery = query.toLowerCase().trim();
-
-        fetch('../products.json')
-          .then(response => {
-            if (!response.ok) throw new Error('Network response was not ok');
-            return response.json();
-          })
-          .then(products => {
-            // Filtrado robusto
-            const filtered = products.filter(product => {
-              if (!product) return false; // Ignorar elementos nulos
-              
-              const title = (product.title || product.name || '').toLowerCase();
-              const desc = (product.description || '').toLowerCase();
-              const cat = (product.category || '').toLowerCase();
-              const id = String(product.id || '');
-
-              return title.includes(lowerQuery) || 
-                     desc.includes(lowerQuery) || 
-                     cat.includes(lowerQuery) ||
-                     id.includes(lowerQuery);
-            });
-
-            if (filtered.length === 0) {
-              container.innerHTML = `
-                <div class="no-results-msg">
-                  <p>No encontramos productos relacionados con "<strong>${query}</strong>".</p>
-                  <p>Intenta con otros términos como "audifonos", "camiseta" o "bluetooth".</p>
-                  <button onclick="window.location.href='../index.html'" class="u-search-btn" style="margin-top:15px;">Ver todo el catálogo</button>
-                </div>`;
-            } else {
-              renderProducts(filtered, container, defaultImg);
-            }
-          })
-          .catch(error => {
-            console.error('Error fetching products:', error);
-            container.innerHTML = '<p class="no-results-msg">Hubo un error al buscar. Por favor recarga la página.</p>';
-          });
-      }
-
-      function renderProducts(products, container, defaultImg) {
-        container.innerHTML = ''; // Limpiar loader
-
-        products.forEach(product => {
-          // Validación estricta de datos para evitar productos rotos
-          if (!product.title && !product.name) return; 
-
-          const title = product.title || product.name;
-          const price = product.price ? `$${parseFloat(product.price).toFixed(2)}` : 'Consultar';
-          // Usar imagen del producto o la default si es null/undefined/vacío
-          const imageSrc = (product.image && product.image.trim() !== '') ? product.image : defaultImg;
+          const cardLink = document.createElement('a');
+          cardLink.className = 'product-card-link';
+          cardLink.href = `../Tecnonel/Producto.html?id=${prod.id}`;
           
-          // CORRECCIÓN DEL ENLACE 404:
-          // Asumimos que tu página de detalles es product-details.html y recibe el ID
-          // Si tu estructura es diferente, cambia esta línea.
-          const productLink = `../product-details.html?pid=${product.id}`;
-
-          const cardHTML = `
-            <div class="u-search-result-card u-product">
-              <a href="${productLink}" style="text-decoration: none; color: inherit;">
-                <div class="u-search-image-container">
-                  <img src="${imageSrc}" alt="${title}" onerror="this.src='${defaultImg}'">
-                </div>
-                <div class="u-search-body">
-                  <h5 class="u-search-title">${title}</h5>
-                  <p class="u-search-price">${price}</p>
-                  <span class="u-search-btn">Ver Producto</span>
-                </div>
-              </a>
+          cardLink.innerHTML = `
+            <div class="product-image-container">
+              <img src="${imgUrl}" alt="${prod.titulo}" class="product-image" onerror="this.src='../images/default-product.jpg'">
             </div>
+            <h3 class="product-title">${prod.titulo}</h3>
+            <div class="product-price">${priceFormatted}</div>
+            <div class="product-category">${prod.categoria || 'General'}</div>
           `;
           
-          container.insertAdjacentHTML('beforeend', cardHTML);
+          container.appendChild(cardLink);
         });
       }
+
+      // 4. Ejecución Principal
+      document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const query = params.get('s') || params.get('search') || ''; // Soporta ?s= y ?search=
+        
+        document.getElementById('search-query-display').textContent = query || '...';
+
+        if (!query) {
+          document.getElementById('results-grid').innerHTML = '<div class="no-results-message"><h3>Ingresa un término de búsqueda</h3></div>';
+          return;
+        }
+
+        fetch('../products/products.json')
+          .then(res => {
+            if (!res.ok) throw new Error('Error cargando JSON');
+            return res.json();
+          })
+          .then(data => {
+            // Ajuste a la estructura real: data.productos
+            const allProducts = data.productos || data; 
+            
+            // Filtrado y Ordenamiento por Relevancia
+            const results = allProducts
+              .map(p => ({ product: p, score: calculateRelevance(p, query) }))
+              .filter(item => item.score > 0)
+              .sort((a, b) => b.score - a.score)
+              .map(item => item.product);
+
+            renderProducts(results, document.getElementById('results-grid'));
+          })
+          .catch(err => {
+            console.error(err);
+            document.getElementById('results-grid').innerHTML = `
+              <div class="no-results-message">
+                <h3>Error al cargar productos</h3>
+                <p>Verifica tu conexión o inténtalo más tarde.</p>
+              </div>`;
+          });
+      });
     </script>
   </body>
 </html>
