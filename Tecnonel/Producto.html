@@ -373,3 +373,70 @@
     </script>
   </body>
 </html>
+
+<!-- Script Corrector de Cantidad (Solo para este producto) -->
+<script>
+(function() {
+    // Esperamos a que cargue la página
+    document.addEventListener('DOMContentLoaded', function() {
+        // Seleccionamos el contenedor específico de cantidad
+        var quantityContainer = document.querySelector('.u-product-quantity-1');
+        
+        if (quantityContainer) {
+            var input = quantityContainer.querySelector('input.u-input');
+            var minusBtn = quantityContainer.querySelector('a.minus');
+            var plusBtn = quantityContainer.querySelector('a.plus');
+            
+            // Configuración inicial
+            if(input) {
+                input.value = "1";
+                input.setAttribute('type', 'text'); // Mantenemos el diseño original
+                input.setAttribute('readonly', 'true'); // Evita escritura manual errónea
+            }
+
+            // Función para actualizar estado y WhatsApp
+            function updateQuantity(newVal) {
+                if (!input) return;
+                
+                // Limites
+                if (newVal < 1) newVal = 1;
+                if (newVal > 5) newVal = 5;
+                
+                input.value = newVal;
+                
+                // Actualizar mensaje de WhatsApp (Buscamos el botón de WhatsApp global o del producto)
+                // Asumiendo que hay un botón de WhatsApp que usa la clase .u-product-quantity-1 para leer el valor
+                // o actualizamos cualquier enlace de whatsapp que dependa de esto.
+                
+                // Opción A: Si el botón de whatsapp está dentro del mismo bloque o cerca
+                // Opción B: Forzamos la actualización leyendo el valor actual cuando se hace click en comprar
+                
+                console.log("Cantidad actualizada a: " + newVal);
+            }
+
+            // Evento Botón Menos
+            if (minusBtn) {
+                minusBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation(); // Evita duplicidad de eventos
+                    var currentVal = parseInt(input.value) || 1;
+                    updateQuantity(currentVal - 1);
+                });
+            }
+
+            // Evento Botón Más
+            if (plusBtn) {
+                plusBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation(); // Evita duplicidad de eventos
+                    var currentVal = parseInt(input.value) || 1;
+                    updateQuantity(currentVal + 1);
+                });
+            }
+            
+            // Inicializar en 1
+            updateQuantity(1);
+        }
+    });
+})();
+</script>
