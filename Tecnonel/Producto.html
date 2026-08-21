@@ -276,13 +276,70 @@
             // Botones de más y menos
             const minusBtn = document.querySelector('.minus.u-quantity-button');
             const plusBtn = document.querySelector('.plus.u-quantity-button');
+            const MAX_QUANTITY = 5;
+            const MIN_QUANTITY = 1;
+
+            // Función para actualizar el estado de los botones
+            function updateButtonStates() {
+              const currentQty = parseInt(quantityInput.value) || 1;
+              
+              // Deshabilitar botón menos si llegamos al mínimo
+              if (currentQty <= MIN_QUANTITY) {
+                minusBtn.classList.add('disabled');
+              } else {
+                minusBtn.classList.remove('disabled');
+              }
+              
+              // Deshabilitar botón más si llegamos al máximo
+              if (currentQty >= MAX_QUANTITY) {
+                plusBtn.classList.add('disabled');
+              } else {
+                plusBtn.classList.remove('disabled');
+              }
+            }
+            
+            // Validar y limitar la entrada manual en el input
+            quantityInput.addEventListener('input', function(e) {
+              let value = this.value.trim();
+              
+              // Solo permitir números
+              value = value.replace(/[^0-9]/g, '');
+              
+              // Convertir a número y validar límites
+              let numValue = parseInt(value) || 1;
+              
+              // Limitar entre 1 y 5
+              if (numValue < MIN_QUANTITY) {
+                numValue = MIN_QUANTITY;
+              } else if (numValue > MAX_QUANTITY) {
+                numValue = MAX_QUANTITY;
+              }
+              
+              this.value = numValue;
+              updateButtonStates();
+            });
+            
+            // También validar cuando el usuario sale del campo
+            quantityInput.addEventListener('blur', function(e) {
+              let numValue = parseInt(this.value) || 1;
+              
+              if (numValue < MIN_QUANTITY) {
+                numValue = MIN_QUANTITY;
+              } else if (numValue > MAX_QUANTITY) {
+                numValue = MAX_QUANTITY;
+              }
+              
+              this.value = numValue;
+              updateButtonStates();
+            });
 
             if (minusBtn) {
               minusBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 let currentQty = parseInt(quantityInput.value) || 1;
-                if (currentQty > 1) {
+                if (currentQty > MIN_QUANTITY) {
                   quantityInput.value = currentQty - 1;
+                  updateButtonStates();
                 }
               });
             }
@@ -291,9 +348,15 @@
               plusBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 let currentQty = parseInt(quantityInput.value) || 1;
-                quantityInput.value = currentQty + 1;
+                if (currentQty < MAX_QUANTITY) {
+                  quantityInput.value = currentQty + 1;
+                  updateButtonStates();
+                }
               });
             }
+            
+            // Inicializar estado de botones
+            updateButtonStates();
 
             // Evento click en el botón de comprar
             addToCartBtn.addEventListener('click', function(e) {
