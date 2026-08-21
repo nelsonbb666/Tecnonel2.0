@@ -154,16 +154,79 @@
         margin-bottom: 10px;
       }
 
+      /* Tablet y móviles grandes */
       @media (max-width: 767px) {
         .results-container {
-          grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+          grid-template-columns: repeat(2, 1fr);
           gap: 15px;
         }
         .product-img-custom {
-          height: 180px;
+          height: 160px;
         }
         .search-title-display {
           font-size: 1.5rem;
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+        .u-sheet-1 {
+          padding-left: 15px !important;
+          padding-right: 15px !important;
+        }
+      }
+
+      /* Móviles medianos */
+      @media (max-width: 575px) {
+        .results-container {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+        }
+        .product-card-custom {
+          border-radius: 8px;
+        }
+        .product-img-custom {
+          height: 140px;
+          padding: 8px;
+        }
+        .product-info-custom {
+          padding: 12px;
+        }
+        .product-title-custom {
+          font-size: 0.95rem;
+          min-height: 40px;
+        }
+        .product-price-custom {
+          font-size: 1.2rem;
+        }
+        .product-cat-custom {
+          font-size: 0.8rem;
+        }
+        .search-title-display {
+          font-size: 1.3rem;
+        }
+      }
+
+      /* Móviles pequeños */
+      @media (max-width: 399px) {
+        .results-container {
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+        .product-img-custom {
+          height: 200px;
+        }
+        .product-title-custom {
+          font-size: 1rem;
+          min-height: 45px;
+        }
+        .product-price-custom {
+          font-size: 1.3rem;
+        }
+        .search-title-display {
+          font-size: 1.2rem;
+        }
+        .u-nav-link-2 {
+          font-size: 1.3rem !important;
+          padding: 10px 15px !important;
         }
       }
     </style>
