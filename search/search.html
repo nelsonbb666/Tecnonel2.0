@@ -229,6 +229,81 @@
           padding: 10px 15px !important;
         }
       }
+      
+      /* Ajustes para header en móviles - evita que elementos se apilen */
+      @media (max-width: 767px) {
+        .u-section-row-2 {
+          padding-top: 10px !important;
+          padding-bottom: 10px !important;
+        }
+        
+        .u-sheet-2 {
+          flex-wrap: nowrap !important;
+          justify-content: space-between !important;
+          width: 100% !important;
+        }
+        
+        .u-image-1 {
+          flex-shrink: 0 !important;
+          margin-right: 5px !important;
+        }
+        
+        .u-image-1 img {
+          width: 60px !important;
+          height: auto !important;
+        }
+        
+        .u-menu-1 {
+          flex: 1 !important;
+          margin-left: 5px !important;
+          margin-right: 5px !important;
+        }
+        
+        .menu-collapse {
+          display: block !important;
+        }
+        
+        .u-nav-container {
+          display: none !important;
+        }
+        
+        .u-shopping-cart-1 {
+          flex-shrink: 0 !important;
+          margin-left: 5px !important;
+          display: inline-block !important;
+        }
+        
+        .u-shopping-cart-icon {
+          width: 32px !important;
+          height: 32px !important;
+        }
+        
+        .u-shopping-cart-count {
+          font-size: 0.6rem !important;
+          padding: 2px 4px !important;
+        }
+      }
+      
+      /* Ajustes adicionales para móviles muy pequeños */
+      @media (max-width: 399px) {
+        .u-sheet-2 {
+          padding-left: 10px !important;
+          padding-right: 10px !important;
+        }
+        
+        .u-image-1 img {
+          width: 50px !important;
+        }
+        
+        .menu-collapse {
+          font-size: 1.5rem !important;
+        }
+        
+        .u-shopping-cart-icon {
+          width: 28px !important;
+          height: 28px !important;
+        }
+      }
     </style>
   </head>
   <body data-home-page="Inicio.html" data-home-page-title="Inicio" data-path-to-root="./" data-include-products="true" class="u-body u-clearfix u-xl-mode" data-lang="es"><header class="u-align-left u-clearfix u-container-align-left u-header u-section-row-container" id="header"><div class="u-section-rows">
