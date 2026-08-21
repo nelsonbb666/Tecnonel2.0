@@ -256,11 +256,12 @@
               bannerImg.src = product.bannerInfo;
             }
             
+
             // Configurar botón de comprar (WhatsApp)
             const addToCartBtn = document.getElementById('add-to-cart-btn');
             const quantityInput = document.querySelector('.u-quantity-input input.u-input');
-            
-            function updateWhatsAppLink() {
+
+            function openWhatsApp() {
               const quantity = parseInt(quantityInput.value) || 1;
               const productName = product.titulo;
               const whatsappNumber = '573127945678';
@@ -268,44 +269,37 @@
               const encodedMessage = encodeURIComponent(message);
               const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
               
-              addToCartBtn.href = whatsappUrl;
-              addToCartBtn.target = '_blank';
+              // Abrir WhatsApp en una nueva pestaña
+              window.open(whatsappUrl, '_blank');
             }
-            
-            // Actualizar enlace de WhatsApp cuando cambia la cantidad
-            quantityInput.addEventListener('input', updateWhatsAppLink);
-            
+
             // Botones de más y menos
             const minusBtn = document.querySelector('.minus.u-quantity-button');
             const plusBtn = document.querySelector('.plus.u-quantity-button');
-            
+
             if (minusBtn) {
               minusBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 let currentQty = parseInt(quantityInput.value) || 1;
                 if (currentQty > 1) {
                   quantityInput.value = currentQty - 1;
-                  updateWhatsAppLink();
                 }
               });
             }
-            
+
             if (plusBtn) {
               plusBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 let currentQty = parseInt(quantityInput.value) || 1;
                 quantityInput.value = currentQty + 1;
-                updateWhatsAppLink();
               });
             }
-            
-            // Inicializar el enlace de WhatsApp
-            if (product.whatsapp) {
-              updateWhatsAppLink();
-              addToCartBtn.addEventListener('click', function(e) {
-                // No prevenir el default, dejar que abra WhatsApp
-              });
-            }
+
+            // Evento click en el botón de comprar
+            addToCartBtn.addEventListener('click', function(e) {
+              e.preventDefault();
+              openWhatsApp();
+            });
           })
           .catch(error => {
             console.error('Error:', error);
