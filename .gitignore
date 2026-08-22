@@ -1,1 +1,49 @@
-Nothing should be ignored based on the provided file changes. The only modified file is 'Tecnonel/Promociones.html', which is a source file and not a build artifact, dependency, or temporary file. Therefore, no .gitignore content is needed.
+```html
+<!-- Doctype declaration -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorías de Productos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Categorías de Productos</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="categorias">
+            <h2>Nuestras Categorías</h2>
+            <div class="categoria-item">
+                <img src="imagenes/categoria1.jpg" alt="Categoría 1">
+                <h3>Categoría 1</h3>
+                <p>Descripción de la categoría 1.</p>
+            </div>
+            <div class="categoria-item">
+                <img src="imagenes/categoria2.jpg" alt="Categoría 2">
+                <h3>Categoría 2</h3>
+                <p>Descripción de la categoría 2.</p>
+            </div>
+            <div class="categoria-item">
+                <img src="imagenes/categoria3.jpg" alt="Categoría 3">
+                <h3>Categoría 3</h3>
+                <p>Descripción de la categoría 3.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tecnonel. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
+```
