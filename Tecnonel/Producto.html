@@ -65,11 +65,11 @@
                 <div class="u-product-control u-product-quantity u-product-quantity-1">
                   <div class="u-hidden u-quantity-label">Cantidad</div>
                   <div class="u-border-1 u-border-grey-30 u-quantity-input">
-                    <a class="disabled minus u-button-style u-quantity-button u-text-body-color">
+                    <a class="minus u-button-style u-quantity-button u-text-body-color" id="qty-minus">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m 4 8 h 8" fill="none" stroke="currentColor" stroke-width="1" fill-rule="evenodd"></path></svg>
                     </a>
-                    <input class="u-input" type="text" value="1" pattern="[0-9]+">
-                    <a class="plus u-button-style u-quantity-button u-text-body-color">
+                    <input class="u-input" type="text" value="1" min="1" max="5" readonly style="-moz-appearance: textfield; text-align: center;" id="qty-input">
+                    <a class="plus u-button-style u-quantity-button u-text-body-color" id="qty-plus">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m 4 8 h 8 M 8 4 v 8" fill="none" stroke="currentColor" stroke-width="1" fill-rule="evenodd"></path></svg>
                     </a>
                   </div>
@@ -256,15 +256,64 @@
               bannerImg.src = product.bannerInfo;
             }
             
+
             // Configurar botón de comprar (WhatsApp)
             const addToCartBtn = document.getElementById('add-to-cart-btn');
-            if (product.whatsapp) {
-              addToCartBtn.href = product.whatsapp;
-              addToCartBtn.target = '_blank';
-              addToCartBtn.addEventListener('click', function(e) {
-                // No prevenir el default, dejar que abra WhatsApp
+            const quantityInput = document.getElementById('qty-input');
+            const minusBtn = document.getElementById('qty-minus');
+            const plusBtn = document.getElementById('qty-plus');
+
+            function openWhatsApp() {
+              const quantity = parseInt(quantityInput.value) || 1;
+              const productName = product.titulo;
+              const whatsappNumber = '573127945678';
+              const message = `Quiero comprar ${quantity} ${quantity === 1 ? 'unidad de' : 'unidades de'} ${productName}, ¿cuál es el precio?`;
+              const encodedMessage = encodeURIComponent(message);
+              const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+              window.open(whatsappUrl, '_blank');
+            }
+
+            // Botones de cantidad - control estricto de 1 en 1
+            let currentQuantity = 1;
+            const MAX_QTY = 5;
+            const MIN_QTY = 1;
+
+            function updateDisplay() {
+              quantityInput.value = currentQuantity;
+              if (minusBtn) minusBtn.classList.toggle('disabled', currentQuantity <= MIN_QTY);
+              if (plusBtn) plusBtn.classList.toggle('disabled', currentQuantity >= MAX_QTY);
+            }
+
+            if (minusBtn) {
+              minusBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (currentQuantity > MIN_QTY) {
+                  currentQuantity--;
+                  updateDisplay();
+                }
               });
             }
+
+            if (plusBtn) {
+              plusBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (currentQuantity < MAX_QTY) {
+                  currentQuantity++;
+                  updateDisplay();
+                }
+              });
+            }
+
+            // Inicializar display
+            updateDisplay();
+
+            // Evento click en el botón de comprar
+            addToCartBtn.addEventListener('click', function(e) {
+              e.preventDefault();
+              openWhatsApp();
+            });
           })
           .catch(error => {
             console.error('Error:', error);
