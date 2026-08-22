@@ -260,6 +260,8 @@
             // Configurar botón de comprar (WhatsApp)
             const addToCartBtn = document.getElementById('add-to-cart-btn');
             const quantityInput = document.getElementById('qty-input');
+            const minusBtn = document.getElementById('qty-minus');
+            const plusBtn = document.getElementById('qty-plus');
 
             function openWhatsApp() {
               const quantity = parseInt(quantityInput.value) || 1;
@@ -268,43 +270,27 @@
               const message = `Quiero comprar ${quantity} ${quantity === 1 ? 'unidad de' : 'unidades de'} ${productName}, ¿cuál es el precio?`;
               const encodedMessage = encodeURIComponent(message);
               const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-              
-              // Abrir WhatsApp en una nueva pestaña
               window.open(whatsappUrl, '_blank');
             }
 
-            // Botones de más y menos
-            const minusBtn = document.getElementById('qty-minus');
-            const plusBtn = document.getElementById('qty-plus');
-            const MAX_QUANTITY = 5;
-            const MIN_QUANTITY = 1;
+            // Botones de cantidad - control estricto de 1 en 1
+            let currentQuantity = 1;
+            const MAX_QTY = 5;
+            const MIN_QTY = 1;
 
-            // Función para actualizar el estado de los botones
-            function updateButtonStates() {
-              const currentQty = parseInt(quantityInput.value) || 1;
-              
-              // Deshabilitar botón menos si llegamos al mínimo
-              if (currentQty <= MIN_QUANTITY) {
-                minusBtn.classList.add('disabled');
-              } else {
-                minusBtn.classList.remove('disabled');
-              }
-              
-              // Deshabilitar botón más si llegamos al máximo
-              if (currentQty >= MAX_QUANTITY) {
-                plusBtn.classList.add('disabled');
-              } else {
-                plusBtn.classList.remove('disabled');
-              }
+            function updateDisplay() {
+              quantityInput.value = currentQuantity;
+              if (minusBtn) minusBtn.classList.toggle('disabled', currentQuantity <= MIN_QTY);
+              if (plusBtn) plusBtn.classList.toggle('disabled', currentQuantity >= MAX_QTY);
             }
 
             if (minusBtn) {
               minusBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                let currentQty = parseInt(quantityInput.value) || 1;
-                if (currentQty > MIN_QUANTITY) {
-                  quantityInput.value = currentQty - 1;
-                  updateButtonStates();
+                e.stopPropagation();
+                if (currentQuantity > MIN_QTY) {
+                  currentQuantity--;
+                  updateDisplay();
                 }
               });
             }
@@ -312,16 +298,16 @@
             if (plusBtn) {
               plusBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                let currentQty = parseInt(quantityInput.value) || 1;
-                if (currentQty < MAX_QUANTITY) {
-                  quantityInput.value = currentQty + 1;
-                  updateButtonStates();
+                e.stopPropagation();
+                if (currentQuantity < MAX_QTY) {
+                  currentQuantity++;
+                  updateDisplay();
                 }
               });
             }
-            
-            // Inicializar estado de botones
-            updateButtonStates();
+
+            // Inicializar display
+            updateDisplay();
 
             // Evento click en el botón de comprar
             addToCartBtn.addEventListener('click', function(e) {
