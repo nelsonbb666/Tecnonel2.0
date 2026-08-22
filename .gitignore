@@ -4,6 +4,7 @@
 # Build artifacts
 build/
 dist/
+target/
 
 # Dependencies
 node_modules/
@@ -13,6 +14,9 @@ __pycache__/
 .mypy_cache/
 .pytest_cache/
 target/
+node_modules/
+.mypy_cache/
+.pytest_cache/
 .gradle/
 
 # Editor/IDE files
@@ -21,6 +25,9 @@ target/
 *.swp
 *.swo
 *.tmp
+coverage/
+htmlcov/
+.coverage
 
 # System files
 .DS_Store
@@ -36,6 +43,15 @@ Thumbs.db
 coverage/
 htmlcov/
 .coverage
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# System files
+.DS_Store
+Thumbs.db
 
 # Compressed files
 *.zip
@@ -60,3 +76,4 @@ htmlcov/
 *.tar.bz2
 *.tar.xz
 *.tar.zst
+```
