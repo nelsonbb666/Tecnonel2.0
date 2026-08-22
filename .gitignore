@@ -1,49 +1,62 @@
-```html
-<!-- Doctype declaration -->
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categorías de Productos</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <h1>Categorías de Productos</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="productos.html">Productos</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
+```
+# Compiled and binary files
+*.pyc
+*.class
+*.o
+*.exe
+*.dll
+*.so
+*.a
+*.obj
+*.out
 
-    <main>
-        <section class="categorias">
-            <h2>Nuestras Categorías</h2>
-            <div class="categoria-item">
-                <img src="imagenes/categoria1.jpg" alt="Categoría 1">
-                <h3>Categoría 1</h3>
-                <p>Descripción de la categoría 1.</p>
-            </div>
-            <div class="categoria-item">
-                <img src="imagenes/categoria2.jpg" alt="Categoría 2">
-                <h3>Categoría 2</h3>
-                <p>Descripción de la categoría 2.</p>
-            </div>
-            <div class="categoria-item">
-                <img src="imagenes/categoria3.jpg" alt="Categoría 3">
-                <h3>Categoría 3</h3>
-                <p>Descripción de la categoría 3.</p>
-            </div>
-        </section>
-    </main>
+# Dependencies
+node_modules/
+venv/
+.venv/
+__pycache__/
+dist/
+build/
+target/
+.gradle/
 
-    <footer>
-        <p>&copy; 2026 Tecnonel. Todos los derechos reservados.</p>
-    </footer>
-</body>
-</html>
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# System files
+.DS_Store
+Thumbs.db
+.env
+.env.local
+*.env.*
+
+# Logs and coverage
+*.log
+coverage/
+htmlcov/
+.coverage
+
+# Compressed files
+*.zip
+*.gz
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
+*.zst
+*.lz4
+*.lzh
+*.cab
+*.arj
+*.rpm
+*.deb
+*.Z
+*.lz
+*.lzo
 ```
