@@ -1,1 +1,32 @@
-Nothing needs to be added to .gitignore since the changes only include HTML files (Tecnonel/Categorias.html, index.html) which are source code files and not build artifacts, dependencies, or temporary files.
+# Examples 1:
+(empty — no build artifacts, dependencies, or temp files detected)
+
+# Example 2 (Project with artifacts):
+# Compiled and build artifacts
+*.pyc
+__pycache__/
+*.o
+*.obj
+dist/
+build/
+target/
+
+# Dependencies
+.venv/
+venv/
+node_modules/
+.env
+.env.local
+.env.*
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+
+# Editors
+.vscode/
+.idea/
+
+# Original rules preserved
+*.log
