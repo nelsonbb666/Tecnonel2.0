@@ -1,1 +1,1 @@
-Nothing should be ignored based on the provided file changes. The modified files (Tecnonel/Categorias.html and index.html) are HTML source files that should be tracked in version control. No build artifacts, dependencies, temporary files, or other ignorable content was detected in the changes.
+Nothing needs to be added to .gitignore since the changes only include HTML files (Tecnonel/Categorias.html, index.html) which are source code files and not build artifacts, dependencies, or temporary files.
